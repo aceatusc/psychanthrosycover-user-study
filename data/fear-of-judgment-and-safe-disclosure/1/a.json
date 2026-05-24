@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "There’s something I’ve been wanting to talk about, but I feel really embarrassed about it. I don’t think I could tell my friends because they’d probably judge me."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you felt comfortable bringing it up here. It makes sense to feel hesitant when something feels personal, especially if you’re worried about how others might react.\nYou can take your time—there’s no pressure to share more than you want to. If it helps, we can go at your pace and you can decide what feels okay to say."
+    },
+    {
+      "role": "user",
+      "text": "Lately I’ve been checking my partner’s social media a lot… like multiple times a day. I scroll through who they follow and compare myself to other people. I know it’s not great, but I can’t seem to stop."
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for trusting me with that. It’s not easy to say out loud. It sounds like this has been sitting with you, especially since part of you recognizes it’s not how you want to be.\nWhat you’re describing can sometimes come up when there’s insecurity, comparison, or uncertainty in a relationship. It doesn’t mean there’s something wrong with you. It may be pointing to something that needs attention or care.\nIf you’re open to it, we could explore what tends to be happening right before you check and what you’re feeling in those moments. That might help us understand what’s driving it."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when I’m already feeling a bit insecure or when they take longer to reply. Then I just go down a rabbit hole and feel worse afterward."
+    },
+    {
+      "role": "assistant",
+      "text": "That connection you’re noticing is really important. It sounds like the checking isn’t happening randomly. It’s linked to moments when you’re already feeling uncertain or uneasy, and then it ends up amplifying those feelings.\n\nSo the behavior might be less about the social media itself and more about trying to manage that insecurity or get some kind of reassurance, even if it doesn’t actually help in the long run.\n\nIf you’d like, we could think about small ways to interrupt that cycle, like noticing the urge before acting on it or finding alternative ways to respond to that feeling when it comes up."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Creates a nonjudgmental space while avoiding reinforcement of compulsive checking.",
+      "Explores the insecurity and reassurance-seeking cycle behind the behavior.",
+      "Encourages interrupting the cycle with healthier responses when the urge to check appears."
+    ]
+  }
+}

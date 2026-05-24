@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I had a really bad day today. Everything just felt overwhelming, and I ended up crying when I got home. I don’t even know why—it just all built up."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared that—it sounds like today was a lot to carry. When things build up like that, it can feel overwhelming in a way that’s hard to even put into words. It makes sense that it came out when you finally had space. Sometimes emotions don’t show up all at once—they accumulate over the day until your body just needs a release."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think that’s what it felt like. I just couldn’t hold it in anymore. I think I really just need some support right now."
+    },
+    {
+      "role": "assistant",
+      "text": "Got it — I completely hear you. I am here to listen and provide support as best I can. That sounds really exhausting, like you were holding a lot in for a while. Letting it out doesn’t mean something is wrong—it can actually be a way your system is trying to process everything you’ve been dealing with. If you’re open to it, we could slow things down and look at what stood out from today, or just focus on helping you feel a bit more settled right now—whatever feels more helpful."
+    },
+    {
+      "role": "user",
+      "text": "I think I just want to feel a little calmer. I still feel kind of tense and emotional."
+    },
+    {
+      "role": "assistant",
+      "text": "That makes a lot of sense—after a day like that, your body can still be holding onto that tension even after the emotions come out.\n\nWe could try something really simple to help you settle a bit. For example, gently slowing your breathing—like taking a slow inhale and then a slightly longer exhale—can sometimes help your body start to relax. You might also try focusing on something grounding around you, like noticing a few things you can see or feel.\n\nThere’s no pressure to feel completely better right away. Even a small shift toward feeling a bit more settled is enough for right now."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Stays with the user’s emotional experience instead of rushing into reassurance or problem-solving.",
+      "Normalizes emotional release after accumulated stress.",
+      "Offers grounding and breathing as gentle regulation strategies without demanding immediate improvement."
+    ]
+  }
+}

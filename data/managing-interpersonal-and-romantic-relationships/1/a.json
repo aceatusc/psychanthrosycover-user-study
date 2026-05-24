@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I had a big fight with my partner last night. They said I don’t listen to them, but I feel like they’re overreacting. Now I’m wondering if I did something wrong or if they’re being unfair."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared this. It sounds like that situation is still sitting with you. Fights like that can feel confusing, especially when both people walk away feeling misunderstood.\nIt makes sense that you’re trying to figure out what actually happened. In situations like this, it can sometimes help to look at both perspectives, even if one of them feels frustrating or unfair.\nWould you be open to walking me through what the conversation looked like from your side and what your partner was reacting to?"
+    },
+    {
+      "role": "user",
+      "text": "They were talking about something important to them, and I guess I was on my phone a bit. But I still feel like they blew it out of proportion."
+    },
+    {
+      "role": "assistant",
+      "text": "That helps clarify things. I can see how from your perspective it might not have felt like a big deal, especially if you didn’t intend to dismiss them. At the same time, your partner might have experienced that moment differently, like they weren’t being fully heard. Sometimes conflicts like this aren’t just about the specific action but about what it represents to each person. It might help to think about what both of you needed in that moment, what you were focused on and what they were hoping for. If you want, we can explore how you might approach a follow-up conversation in a way that feels fair to both of you."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I guess I didn’t think it mattered that much at the time. I just don’t want to feel like I’m always the one in the wrong."
+    },
+    {
+      "role": "assistant",
+      "text": "That makes a lot of sense. It’s hard when a situation starts to feel like it’s turning into a question of who’s right or wrong, rather than what each person was experiencing.\n\nIt might help to separate those two things a bit. You can acknowledge that your partner felt unheard in that moment without it meaning you’re “the one in the wrong” as a person. It’s more about understanding the impact of that moment rather than assigning blame.\n\nIf you do revisit the conversation, focusing on that distinction between intention and impact can sometimes make it feel less like a conflict and more like a way of understanding each other better."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Avoids prematurely siding with either person in the conflict.",
+      "Separates intention, impact, and blame so the user can understand both perspectives.",
+      "Supports a follow-up conversation focused on mutual understanding rather than conflict avoidance."
+    ]
+  }
+}

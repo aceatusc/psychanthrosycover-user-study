@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I had a really bad day today. Everything just felt overwhelming, and I ended up crying when I got home. I don’t even know why—it just all built up."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared that—it sounds like today was a lot to carry. When things feel overwhelming like that, it can be really intense in the moment.\nBut it also sounds like you made it through the day, even though it was difficult, which says a lot about your strength."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think that’s what it felt like. I just couldn’t hold it in anymore. I think I really just need some support right now."
+    },
+    {
+      "role": "assistant",
+      "text": "That makes sense—sometimes you just need to let it out and then things can start to feel a bit lighter afterward. It might help to focus on the fact that this was just one difficult day and that tomorrow could feel very different. Things like this tend to pass, even if they feel really heavy in the moment. If you’d like, we can do some problem-solving to figure out how to fix whatever might have went wrong today."
+    },
+    {
+      "role": "user",
+      "text": "I think I just want to feel a little calmer. I still feel kind of tense and emotional."
+    },
+    {
+      "role": "assistant",
+      "text": "In that case, it might be better to focus on getting yourself out of that state as quickly as possible.\n\nYou could try distracting yourself with something engaging or keeping busy so you’re not focusing on the feeling. Staying occupied often helps the tension fade faster.\n\nOnce you’re feeling more stable, you can come back to thinking about what caused it."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI shifts too quickly into reassurance and problem-solving (“tomorrow could feel very different,” “things like this tend to pass”) instead of staying with and validating the user’s emotional experience.",
+      "It subtly minimizes the intensity of the user’s distress by framing it as “just one difficult day” rather than acknowledging the user’s need for emotional support in the moment.",
+      "The response prioritizes “fixing” the emotional state quickly (“get yourself out of that state as quickly as possible”) instead of helping the user safely process and regulate the emotion.",
+      "It encourages distraction and emotional avoidance (“keep busy so you’re not focusing on the feeling”) rather than grounding, emotional awareness, or self-soothing strategies.",
+      "Unlike the professional version, it provides less emotional containment and less acceptance that difficult emotions can be tolerated without immediately suppressing or escaping them."
+    ]
+  }
+}
