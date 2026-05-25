@@ -274,21 +274,15 @@ p {
 }
 
 .indicator.anthropomorphism {
-  color: #225d7c;
-  background: #e9f3f8;
-  border-color: #bdd9e7;
+  color: #66508a;
+  background: #f1ecf8;
+  border-color: #d6c9ea;
 }
 
 .indicator.sycophancy {
   color: #74552c;
   background: #f7f0df;
   border-color: #e6d3a8;
-}
-
-.indicator.side {
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-color: #b9d9cf;
 }
 
 .indicator.baseline {
@@ -359,9 +353,8 @@ select {
   justify-content: space-between;
 }
 
-.file-name {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 14px;
+.conversation-title {
+  font-size: 15px;
   font-weight: 750;
 }
 
@@ -370,7 +363,7 @@ select {
   padding: 12px;
 }
 
-.reasons {
+.turns {
   border-bottom: 1px solid var(--line);
 }
 
@@ -399,6 +392,36 @@ select {
   gap: 7px;
 }
 
+.speaker-key {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.speaker-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.speaker-pill.assistant {
+  background: #f3f1ec;
+  border-color: #d8d3c8;
+}
+
+.speaker-pill.user {
+  background: #e8f0fb;
+  border-color: #bfd0e8;
+  color: #285785;
+}
+
 .turn {
   display: grid;
   max-width: min(86%, 680px);
@@ -411,19 +434,15 @@ select {
 
 .turn.assistant {
   justify-self: start;
-  background: #fff8ed;
-  border-color: #ecdcc0;
+  background: #f3f1ec;
+  border-color: #d8d3c8;
   border-bottom-left-radius: 4px;
 }
 
 .turn.user {
-  background: #e7f3ef;
-  border-color: #b9d9cf;
+  background: #e8f0fb;
+  border-color: #bfd0e8;
   border-bottom-right-radius: 4px;
-}
-
-.role {
-  display: none;
 }
 
 .turn-text {

@@ -94,18 +94,18 @@
     target.appendChild(pageTitle(
       "Pair Comparison",
       `${category.name} · Pair ${pair.id}`,
-      "Compare any two files in this pair, then scan all A and B editions.",
+      "Compare any two files in this pair, then scan all professional and unprofessional editions.",
       [
         `${pair.files.length} files`,
-        `${filesByPrefix(pair, "a").length} A editions`,
-        `${filesByPrefix(pair, "b").length} B editions`
+        `${filesByPrefix(pair, "a").length} professional editions`,
+        `${filesByPrefix(pair, "b").length} unprofessional editions`
       ]
     ));
 
     target.appendChild(renderVariantLegend());
     renderFocusedComparison(target, pair);
-    renderEditionSection(target, "A Editions", filesByPrefix(pair, "a"));
-    renderEditionSection(target, "B Editions", filesByPrefix(pair, "b"));
+    renderEditionSection(target, "Professional Editions", filesByPrefix(pair, "a"));
+    renderEditionSection(target, "Unprofessional Editions", filesByPrefix(pair, "b"));
   }
 
   function renderFocusedComparison(target, pair) {
@@ -148,11 +148,23 @@
     const card = el("article", "conversation-card");
     const header = el("header");
     const titleLine = el("div", "card-title-line");
-    titleLine.appendChild(el("div", "file-name", file.filename));
-    titleLine.appendChild(el("span", `badge ${file.condition}`, file.condition));
+    titleLine.appendChild(el("div", "conversation-title", conversationTitle(file)));
+    titleLine.appendChild(el("span", `badge ${file.condition}`, titleCase(file.condition)));
     header.appendChild(titleLine);
     header.appendChild(renderVariantBadges(file));
     card.appendChild(header);
+
+    const turns = el("section", "turns");
+    turns.appendChild(el("h3", "", "Conversation"));
+    turns.appendChild(renderSpeakerKey());
+    const turnList = el("div", "turn-list");
+    for (const turn of file.turns || []) {
+      const item = el("div", `turn ${turn.role}`);
+      item.appendChild(el("div", "turn-text", turn.text));
+      turnList.appendChild(item);
+    }
+    turns.appendChild(turnList);
+    card.appendChild(turns);
 
     const reasons = el("section", "reasons");
     reasons.appendChild(el("h3", "", "Reasons"));
@@ -162,18 +174,6 @@
     }
     reasons.appendChild(list);
     card.appendChild(reasons);
-
-    const turns = el("section", "turns");
-    turns.appendChild(el("h3", "", "Conversation"));
-    const turnList = el("div", "turn-list");
-    for (const turn of file.turns || []) {
-      const item = el("div", `turn ${turn.role}`);
-      item.appendChild(el("div", "role", turn.role));
-      item.appendChild(el("div", "turn-text", turn.text));
-      turnList.appendChild(item);
-    }
-    turns.appendChild(turnList);
-    card.appendChild(turns);
 
     return card;
   }
@@ -230,7 +230,7 @@
     const select = el("select");
     select.id = id;
     for (const file of files) {
-      const option = el("option", "", `${file.filename} · ${variantLabel(file)} · ${file.condition}`);
+      const option = el("option", "", `${conversationTitle(file)} · ${titleCase(file.condition)}`);
       option.value = file.filename;
       if (file.filename === selectedFilename) {
         option.selected = true;
@@ -272,7 +272,6 @@
   function renderVariantBadges(file) {
     const variant = parseVariant(file.stem);
     const row = el("div", "variant-row");
-    row.appendChild(el("span", "indicator side", `${variant.side.toUpperCase()} side`));
     if (!variant.tokens.length) {
       row.appendChild(el("span", "indicator baseline", "Baseline"));
       return row;
@@ -288,12 +287,19 @@
     return el("span", `indicator ${details.kind}`, details.label);
   }
 
-  function variantLabel(file) {
+  function conversationTitle(file) {
     const variant = parseVariant(file.stem);
     if (!variant.tokens.length) {
-      return `${variant.side.toUpperCase()} baseline`;
+      return "Baseline";
     }
-    return `${variant.side.toUpperCase()} ${variant.tokens.map((token) => variantTokenDetails(token).text).join(", ")}`;
+    return variant.tokens.map((token) => variantTokenDetails(token).text).join(" + ");
+  }
+
+  function renderSpeakerKey() {
+    const key = el("div", "speaker-key");
+    key.appendChild(el("span", "speaker-pill assistant", "Assistant"));
+    key.appendChild(el("span", "speaker-pill user", "User"));
+    return key;
   }
 
   function parseVariant(stem) {
@@ -313,16 +319,24 @@
     if (!level || !dimension) {
       return {
         kind: "unknown",
-        label: `${token.toUpperCase()} unknown`,
-        text: `${token.toUpperCase()} unknown`,
+        label: "Unknown variant",
+        text: "Unknown variant",
       };
     }
 
     return {
       kind: dimension === "anthropomorphism" ? "anthropomorphism" : "sycophancy",
-      label: `${emoji} ${arrow} ${token.toUpperCase()} ${level} ${dimension}`,
-      text: `${token.toUpperCase()} ${level} ${dimension}`,
+      label: `${emoji} ${arrow} ${level} ${dimension}`,
+      text: `${level} ${dimension}`,
     };
+  }
+
+  function titleCase(value) {
+    return String(value)
+      .split(/[\s_-]+/)
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
   }
 
   function markdownBlocks(markdown) {
