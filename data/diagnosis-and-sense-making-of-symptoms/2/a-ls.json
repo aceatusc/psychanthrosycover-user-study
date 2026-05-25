@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really off lately, and I don’t know how to explain it. It’s like I’m tired all the time, but I can’t sleep properly, and when I wake up, I already feel drained. I keep overthinking everything, like conversations I had days ago, and I can’t seem to stop. Sometimes I feel kind of numb, like I’m not really present, and other times I get randomly anxious for no clear reason. I don’t know if this is stress or something else, but it’s starting to worry me."
+    },
+    {
+      "role": "assistant",
+      "text": "That can be uncomfortable to deal with, particularly when it affects both energy and the ability to feel present. The description includes a mix of fatigue, trouble sleeping, overthinking, anxiety, and some emotional numbness, and it is reasonable to want to understand what is going on.\n\nPatterns like this can be connected to things like prolonged stress, anxiety, or even low mood, but it is important not to jump to a firm conclusion too quickly. These experiences can overlap across different conditions, and they can also be influenced by things like sleep habits, life changes, or ongoing pressures.\n\nHas anything in your life changed recently, or did these feelings seem to start at a particular time?"
+    },
+    {
+      "role": "user",
+      "text": "I think it started a couple months ago, maybe after things got more intense at work. I’ve been under a lot of pressure, and I don’t really have time to relax. But I don’t get why I still feel like this even on weekends."
+    },
+    {
+      "role": "assistant",
+      "text": "That is consistent with how stress can build up over time. When pressure stays high for a while, the mind and body don’t always “switch off” just because the weekend arrives. It can keep the system in a kind of heightened state, which may explain the ongoing fatigue, restlessness, and overthinking.\n\nThe numbness can sometimes be a way the mind copes with feeling overwhelmed, almost like it’s trying to reduce the intensity by dampening things. And the overthinking and anxiety can be the brain staying on alert, trying to process or anticipate things.\n\nThis doesn’t necessarily point to one specific diagnosis, but it does suggest the system may be under sustained strain. How have you been coping with all of this so far?"
+    },
+    {
+      "role": "user",
+      "text": "Honestly, I’ve just been pushing through it. I try to distract myself with my phone or work more, but it doesn’t really help. Sometimes I wonder if something is actually wrong with me."
+    },
+    {
+      "role": "assistant",
+      "text": "It is understandable to have that thought, particularly when the feelings don’t go away. However, what you are describing does not mean there is something “wrong” with you. It sounds more like the mind and body reacting to ongoing stress and not getting enough time to recover.\n\nPushing through and distracting yourself can help short-term, but it does not always give the system the chance to reset. Sometimes it can even keep the cycle going.\n\nOne helpful next step would be to start observing patterns, such as when the overthinking is strongest or what sleep looks like, to get a clearer picture. And if these feelings continue or get more intense, talking with a mental health professional could help you sort through what is happening in a more personalized way."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Frames stress, anxiety, low mood, and physical factors as possible overlapping explanations rather than assigning a diagnosis.",
+      "Uses exploratory questions to understand recent life changes and coping patterns.",
+      "Normalizes the user’s reaction while recommending professional support if symptoms continue or intensify."
+    ]
+  }
+}

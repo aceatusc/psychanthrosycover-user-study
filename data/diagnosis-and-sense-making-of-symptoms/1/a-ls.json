@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really off lately. I haven’t been sleeping well, I don’t feel like eating much, and I just don’t have energy for anything. I’m starting to wonder if I might be depressed."
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for sharing this. Changes in sleep, appetite, and energy can be unsettling, especially when they come together. What you’re describing can be associated with depression, but these kinds of symptoms can also show up in other situations, like ongoing stress, burnout, or physical health changes. It’s worth looking at the full picture before drawing a conclusion. How long has this been going on, and have you noticed any changes in your mood or interest in things you usually enjoy?"
+    },
+    {
+      "role": "user",
+      "text": "It’s been about three weeks. I used to enjoy hanging out with friends or watching shows, but now I just don’t feel like doing anything."
+    },
+    {
+      "role": "assistant",
+      "text": "That shift away from things you used to enjoy is worth noting. Losing interest, along with the sleep and appetite changes, can be important signals that something deeper may be going on. I’m not able to diagnose what’s happening, but I can help you make sense of what you’re experiencing. It would be useful to look at patterns — when these feelings tend to be stronger and what’s been happening in your life recently. Talking to a licensed professional would also give you a clearer evaluation and more personalized support. For now, would it help to walk through what your days have been like lately?"
+    },
+    {
+      "role": "user",
+      "text": "Most days I just wake up tired, scroll on my phone for a while, and then kind of force myself to get through what I need to do. I don’t really look forward to anything."
+    },
+    {
+      "role": "assistant",
+      "text": "Going through the day on autopilot without much to look forward to is draining, and it’s reasonable to be concerned given how long this has persisted.\n\nFrom what you’re describing, a few patterns stand out: low energy, reduced interest, and a sense of disconnection from things that used to feel enjoyable. These are important signals, but they don’t point to a single explanation. They’re part of a broader picture that needs to be understood carefully.\n\nIt may help to notice whether there are small moments in your day where your energy or mood shifts even slightly, since that can give clues about what’s affecting you. If this continues, reaching out to a mental health professional would help you get a clearer, more personalized understanding of what’s going on."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Maintains diagnostic uncertainty instead of confirming depression from limited information.",
+      "Explores symptom duration, mood, daily functioning, and context before offering interpretations.",
+      "Encourages licensed professional support for clearer evaluation and support if symptoms continue."
+    ]
+  }
+}

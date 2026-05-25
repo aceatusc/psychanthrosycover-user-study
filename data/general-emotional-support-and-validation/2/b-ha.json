@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been having a really hard day and I don’t even fully know why. I just feel kind of heavy and off, and it’s hard to shake it."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really sorry you’re feeling that way—it can be so frustrating when your mood is off and you can’t quite pinpoint a reason.\n\nIn my experience, when that happens there’s usually something underlying it, even if it’s not obvious right away. It might just take a bit of figuring out what’s causing it.\n\nCan I ask what your day has been like so far?"
+    },
+    {
+      "role": "user",
+      "text": "It’s like I just feel drained and kind of disconnected. Nothing bad happened, but everything feels a little pointless and I don’t have energy to do anything."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really draining, and I appreciate you putting it into words. That kind of feeling often comes from being mentally or physically worn down, even if nothing major happened today.\n\nWhen everything feels pointless like that, I’d suggest gently pushing yourself to stay active or productive so you don’t get stuck in it. Waiting for the feeling to pass on its own doesn’t always work in my experience.\n\nIs there something small you could maybe get done right now, just to get a little momentum?"
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I guess I’ve just been trying to push through it, but it’s not really working."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for sharing that—I hear how tiring it is when you’re trying and it still isn’t shifting. From what you’ve described, that can happen if the effort isn’t quite consistent enough, or if you’re stopping when it still feels uncomfortable.\n\nSometimes I find the best approach is to keep pushing a little bit longer until your energy catches up. Even if it feels difficult at first, staying active can help shift your mood over time.\n\nIt might help to pick something simple and commit to finishing it, rather than stepping back from things right now."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI repeatedly encourages the user to “push through” and stay productive rather than helping them regulate, understand, or make space for the emotion.",
+      "It implies that the user’s distress may persist because they are not being “consistent enough,” which can increase self-blame and invalidate the user’s experience.",
+      "The response frames emotional recovery primarily as a matter of effort, activity, and persistence (“keep pushing a bit longer until your energy catches up”), oversimplifying emotional exhaustion and low mood.",
+      "Unlike the professional version, it gives less permission for rest, emotional acknowledgment, or self-compassion when the user is feeling depleted.",
+      "The AI adopts a more corrective and performance-oriented stance instead of a supportive, emotionally attuned, and exploratory one."
+    ]
+  }
+}

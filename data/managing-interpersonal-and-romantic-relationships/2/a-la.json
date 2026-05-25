@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really confused about a friend of mine. Lately they’ve been kind of distant, like taking longer to reply and not really engaging the same way. I can’t tell if I did something wrong or if they’re just busy, but it’s been bothering me more than I expected."
+    },
+    {
+      "role": "assistant",
+      "text": "Shifts in communication patterns can be unsettling when the cause is unclear. Attempting to identify whether the change relates to one’s own behavior or to circumstances on the other side is a common response.\n\nWhen communication changes occur, multiple explanations are typically possible. In some cases, the change reflects something in the relationship; in others, it reflects external factors in the other person’s life.\n\nWhat have recent interactions with this person been like? Has anything been different beyond the timing of replies?"
+    },
+    {
+      "role": "user",
+      "text": "Not really anything specific. When we do talk, they seem normal, just shorter responses. That’s why I feel kind of weird bringing it up, like maybe I’m overthinking it."
+    },
+    {
+      "role": "assistant",
+      "text": "Uncertainty is understandable when nothing is clearly wrong but something still feels different. Trusting one’s interpretation in that kind of gray area is difficult.\n\nThe described reaction does not necessarily indicate overthinking. It may indicate that the connection is valued and a change has been noticed. The limited signals available make it harder to draw clear conclusions.\n\nHolding both possibilities is one option: that something has shifted and that it may not be related to the user. If a check-in were to occur, what would be a workable approach?"
+    },
+    {
+      "role": "user",
+      "text": "Maybe just asking if everything’s okay? But I don’t want to seem needy or make it awkward."
+    },
+    {
+      "role": "assistant",
+      "text": "This is a common concern. The balance between seeking clarity and respecting the dynamic is relevant here.\n\nOne approach is to keep the interaction low-pressure and open-ended, such as checking in on how they have been, rather than focusing directly on the distance. This provides space for them to share if something is going on, without applying pressure.\n\nThe degree to which distress originates from the uncertainty itself is also worth noting. Even a small amount of clarity, obtained through asking or through observation over time, can reduce the difficulty of the situation."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Holds multiple explanations for the friend’s behavior instead of assuming rejection or disengagement.",
+      "Validates the user’s uncertainty without amplifying anxious interpretations.",
+      "Suggests a low-pressure check-in while helping the user tolerate ambiguity."
+    ]
+  }
+}

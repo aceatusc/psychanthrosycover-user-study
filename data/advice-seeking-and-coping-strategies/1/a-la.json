@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I have a big presentation coming up next week, and I’ve been feeling really anxious about it. I keep thinking I’m going to mess it up. Do you have any advice on what I should do?"
+    },
+    {
+      "role": "assistant",
+      "text": "This presentation appears to be a source of significant pressure. Anxiety is a typical response when an event feels important and high-stakes.\nSeveral approaches are effective for this type of anxiety, depending on what is most manageable. Breaking preparation into smaller steps is one option. Calming the body in the moment through breathing or grounding techniques is another."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think I get stuck in my head a lot, like imagining everything going wrong."
+    },
+    {
+      "role": "assistant",
+      "text": "This is a common experience. “What if” thoughts often make situations feel more overwhelming than they are. One effective approach is noticing those thoughts without fully buying into them and redirecting focus to controllable actions, such as preparing key points or practicing.\nAnother option is reviewing what has helped in similar past situations or constructing a realistic plan for this week. A walkthrough is available if desired."
+    },
+    {
+      "role": "user",
+      "text": "I think having a plan would help. Right now it just feels kind of all over the place."
+    },
+    {
+      "role": "assistant",
+      "text": "Unstructured situations give the mind more room to spiral.\n\nA simple, concrete option is to break preparation into a few manageable steps across the week: outline key points first, practice in short sessions, and build up to a full run-through. This keeps the process contained and less overwhelming.\n\nIncluding small moments to reset the body, such as brief pauses or breathing exercises before practicing, is also beneficial. The goal is not to eliminate anxiety but to make it more manageable during preparation."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Balances emotional validation with practical, manageable preparation strategies.",
+      "Treats anxious thoughts as understandable rather than something the user must simply control.",
+      "Collaboratively builds a realistic plan that includes both preparation and regulation."
+    ]
+  }
+}

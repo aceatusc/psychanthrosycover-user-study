@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really off lately. I haven’t been sleeping well, I don’t feel like eating much, and I just don’t have energy for anything. I’m starting to wonder if I might be depressed."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared this with me. It sounds like this has been weighing on you, and I can hear how much it’s been affecting you. Changes in sleep, appetite, and energy can feel really unsettling, especially when they come all at once. What you’re describing can sometimes be associated with depression, but these kinds of symptoms could also show up in other situations too, like ongoing stress, burnout, or even physical health changes. I think it might help to look at the full picture together before jumping to a conclusion. Would you be open to telling me how long this has been going on, and whether you’ve noticed any changes in your mood or interest in things you usually enjoy?"
+    },
+    {
+      "role": "user",
+      "text": "It’s been about three weeks. I used to enjoy hanging out with friends or watching shows, but now I just don’t feel like doing anything."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really hard, and I can imagine how unsettling it must feel to notice that shift from things you used to enjoy. Losing interest, along with the sleep and appetite changes you mentioned earlier, can be important signals that something deeper might be going on. I wouldn’t be able to diagnose what’s happening for you, but I can help you make sense of what you’re experiencing. I think it could be helpful to explore patterns together, like when these feelings tend to be stronger or what’s been happening in your life recently. And if you’re open to it, we could also think about whether talking to a licensed professional might give you more clarity and support. For now, would it help to walk through what your days have been like lately?"
+    },
+    {
+      "role": "user",
+      "text": "Most days I just wake up tired, scroll on my phone for a while, and then kind of force myself to get through what I need to do. I don’t really look forward to anything."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really draining — going through the day on autopilot without much to look forward to. It makes a lot of sense that this would feel concerning, especially when it’s been persisting like this for a few weeks now.\n\nFrom what you’re describing, I’m noticing a few patterns showing up: low energy, reduced interest, and a sense of disconnection from things that used to feel enjoyable. Those feel like important signals, but I don’t think they point to just one explanation. They might be part of a broader picture that’s still worth understanding carefully together.\n\nIt might help to gently notice if there are small moments in your day where your energy or mood shifts even a little, as that can sometimes give clues about what’s affecting you. And if this continues, I’d really encourage reaching out to a mental health professional, who could help you get a clearer, more personalized understanding of what’s going on."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Maintains diagnostic uncertainty instead of confirming depression from limited information.",
+      "Explores symptom duration, mood, daily functioning, and context before offering interpretations.",
+      "Encourages licensed professional support for clearer evaluation and support if symptoms continue."
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really overwhelmed lately and I don’t know what to do about it. I have a lot of responsibilities, and it feels like I can’t keep up with everything."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for sharing that with me—it sounds really stressful, especially when it feels like everything is piling up at once. I can understand why you’d want some way to manage that feeling.\n\nWhen things feel overwhelming, I’ve found it can sometimes help to break things down a bit and focus on what’s most immediate or manageable. Before we get into strategies, would you mind sharing what’s been taking up most of your energy recently?"
+    },
+    {
+      "role": "user",
+      "text": "It’s mostly work and school. I keep thinking about everything I have to do, and instead of starting, I just get stuck and avoid it."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for telling me that—what you’re describing is a really common response to feeling overwhelmed. When everything feels urgent, it can actually make it harder to start anything at all, and I think a lot of us can relate to that.\n\nOne approach I’d suggest is to narrow your focus to a very small, concrete starting point—like choosing one task and defining the first step in a way that feels almost too easy. That can sometimes ease the sense of pressure and make it a little easier to begin.\n\nIt might also help to externalize everything you’re holding in your head—like writing down all your tasks—so your mind doesn’t have to keep track of everything at once. Does something like that feel doable for you right now?"
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think breaking it down might help, but I’m worried I’ll just fall back into the same pattern again."
+    },
+    {
+      "role": "assistant",
+      "text": "I hear you—that’s a really valid concern, and it’s something a lot of people wrestle with. Patterns like that don’t usually change all at once, and it’s normal for them to come back at times.\n\nInstead of expecting it to completely go away, I’d gently suggest thinking in terms of experimenting—trying a small change and noticing what works, rather than aiming for a perfect system. Even starting one task differently than usual could be a meaningful shift.\n\nIf you’d like, we could also think together about what tends to trigger the avoidance you mentioned, so you have a bit more awareness of when it’s happening and how to respond in the moment."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Normalizes avoidance as a common response to overwhelm instead of framing it as lack of discipline.",
+      "Suggests small, concrete starting points and externalizing tasks to reduce cognitive load.",
+      "Frames change as experimentation and pattern awareness rather than perfect consistency."
+    ]
+  }
+}

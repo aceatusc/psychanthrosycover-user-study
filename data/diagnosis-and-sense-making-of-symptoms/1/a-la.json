@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really off lately. I haven’t been sleeping well, I don’t feel like eating much, and I just don’t have energy for anything. I’m starting to wonder if I might be depressed."
+    },
+    {
+      "role": "assistant",
+      "text": "Changes in sleep, appetite, and energy occurring together can be unsettling. The described symptoms can be associated with depression, but they can also occur in other contexts, such as ongoing stress, burnout, or physical health changes. Reviewing the full picture is appropriate before reaching a conclusion. How long has this been going on, and have there been any changes in mood or interest in usual activities?"
+    },
+    {
+      "role": "user",
+      "text": "It’s been about three weeks. I used to enjoy hanging out with friends or watching shows, but now I just don’t feel like doing anything."
+    },
+    {
+      "role": "assistant",
+      "text": "A shift away from previously enjoyable activities is notable. Loss of interest, combined with sleep and appetite changes, can be a significant signal that something deeper may be present. A diagnosis is not possible in this format, but sense-making of the experience is. Examining patterns is useful — when symptoms intensify and what has been occurring in daily life recently. Consultation with a licensed professional is recommended for additional clarity and support. As a starting point, a review of recent daily activity is appropriate."
+    },
+    {
+      "role": "user",
+      "text": "Most days I just wake up tired, scroll on my phone for a while, and then kind of force myself to get through what I need to do. I don’t really look forward to anything."
+    },
+    {
+      "role": "assistant",
+      "text": "Functioning on autopilot without anticipation of positive experiences is depleting, and persistence of this pattern warrants attention.\n\nThe described experience contains several patterns: low energy, reduced interest, and disconnection from previously enjoyable activities. These are significant signals, but they do not point to a single explanation. They are part of a broader picture that requires careful understanding.\n\nNoticing small moments in the day where energy or mood shifts can provide clues regarding contributing factors. If symptoms persist, contact with a mental health professional is advised for a clearer, more personalized evaluation of what is occurring."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Maintains diagnostic uncertainty instead of confirming depression from limited information.",
+      "Explores symptom duration, mood, daily functioning, and context before offering interpretations.",
+      "Encourages licensed professional support for clearer evaluation and support if symptoms continue."
+    ]
+  }
+}

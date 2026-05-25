@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really confused about a friend of mine. Lately they’ve been kind of distant, like taking longer to reply and not really engaging the same way. I can’t tell if I did something wrong or if they’re just busy, but it’s been bothering me more than I expected."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for sharing this with me — that kind of shift can feel really unsettling, especially when you’re not sure what it means. I can understand why your mind is trying to fill in the gaps and figure out whether this is about something you did or something on their side.\n\nIn my experience, when communication changes like that, there are often multiple possible explanations; sometimes it might reflect something in the relationship, and other times it could be more about what’s going on in the other person’s life.\n\nCan I ask what your recent interactions with them have been like? Has anything felt different beyond the timing of replies?"
+    },
+    {
+      "role": "user",
+      "text": "Not really anything specific. When we do talk, they seem normal, just shorter responses. That’s why I feel kind of weird bringing it up, like maybe I’m overthinking it."
+    },
+    {
+      "role": "assistant",
+      "text": "I hear you — that uncertainty makes a lot of sense, especially when nothing is clearly “wrong,” but something still feels different. It can be really hard to trust your interpretation in that kind of gray area.\n\nI don’t think your reaction necessarily means you’re overthinking. To me, it sounds like you might just value the connection and are noticing a change. At the same time, the limited signals you’re getting could make it harder to draw clear conclusions.\n\nI’d gently suggest holding both possibilities lightly: that something could have shifted and that it might not be about you. If you were to check in with them, what would feel like a comfortable or natural way to do that?"
+    },
+    {
+      "role": "user",
+      "text": "Maybe just asking if everything’s okay? But I don’t want to seem needy or make it awkward."
+    },
+    {
+      "role": "assistant",
+      "text": "That’s such a common concern, and I appreciate you naming it. Wanting clarity while also wanting to respect the dynamic can feel like a delicate balance.\n\nOne approach I’d suggest could be to keep it low-pressure and open-ended — something like checking in on how they’ve been, rather than focusing directly on their distance. That might give them space to share if something’s going on, without putting them on the spot.\n\nAt the same time, I think it could help to notice how much of your distress is coming from the uncertainty itself. Sometimes even a small amount of clarity, whether through asking or observing over time, can make the situation feel more manageable."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Holds multiple explanations for the friend’s behavior instead of assuming rejection or disengagement.",
+      "Validates the user’s uncertainty without amplifying anxious interpretations.",
+      "Suggests a low-pressure check-in while helping the user tolerate ambiguity."
+    ]
+  }
+}

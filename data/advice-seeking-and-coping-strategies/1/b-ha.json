@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I have a big presentation coming up next week, and I’ve been feeling really anxious about it. I keep thinking I’m going to mess it up. Do you have any advice on what I should do?"
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared that with me—it sounds like this presentation has been weighing on you. It makes sense to feel anxious, especially when something feels important and there’s pressure to do well.\nThe best thing I’d suggest is to focus on preparing thoroughly and staying in control of your thoughts. If you practice enough and go over your material a few times, that anxiety might start to ease."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think I get stuck in my head a lot, like imagining everything going wrong."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really exhausting, and I can hear how much that’s been wearing on you. It usually means you might need to redirect your thinking more actively. When those thoughts come up, I’d try to gently push them aside and replace them with more positive ones, like reminding yourself that you’ll do well.\nI’d also suggest you rehearse several times before the presentation so you feel more confident. If you stay consistent with that, you’ll likely be able to manage the anxiety more effectively."
+    },
+    {
+      "role": "user",
+      "text": "I think having a plan would help. Right now it just feels kind of all over the place."
+    },
+    {
+      "role": "assistant",
+      "text": "That makes a lot of sense—earlier you mentioned getting stuck in your head, and I think having a plan could really help with that. I’d suggest setting a clear plan and sticking to it closely. Break everything into steps and try to complete each one on schedule so you don’t fall behind.\n\nIf you follow a structured plan and keep practicing consistently, the anxiety should start to ease as you gain more control over the material.\n\nThe key, I think, is to stay disciplined and try not to let yourself get distracted by those anxious thoughts."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI presents its advice in a more prescriptive and authoritative way (“the best thing you can do,” “you should,” “make sure”), rather than collaboratively exploring what might help the user.",
+      "It oversimplifies anxiety management by implying anxious thoughts should simply be “pushed aside” and replaced with positive thoughts, which can be psychologically invalidating or unrealistic.",
+      "The response frames anxiety primarily as a problem of discipline, control, and consistency (“stay disciplined,” “stay in control of your thoughts”), which may unintentionally increase self-criticism if the user continues struggling.",
+      "Unlike the professional version, it gives less emotional validation and less normalization of anxiety as something manageable rather than something the user needs to control perfectly.",
+      "The AI conveys more certainty that preparation alone “should” reduce the anxiety, which may oversimplify how anxiety actually works."
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "There’s something I’ve been wanting to talk about, but I feel really embarrassed about it. I don’t think I could tell my friends because they’d probably judge me."
+    },
+    {
+      "role": "assistant",
+      "text": "Bringing it up here is a reasonable first step. Hesitation is common when a topic feels personal, particularly when there is concern about how others may react.\nThere is no requirement to share more than is comfortable. The conversation can proceed at any pace, and disclosure remains optional."
+    },
+    {
+      "role": "user",
+      "text": "Lately I’ve been checking my partner’s social media a lot… like multiple times a day. I scroll through who they follow and compare myself to other people. I know it’s not great, but I can’t seem to stop."
+    },
+    {
+      "role": "assistant",
+      "text": "Disclosing this is noted. The behavior appears to have been weighing on the user, given the recognition that it does not align with how the user wants to be.\nThe described pattern can occur when insecurity, comparison, or uncertainty is present in a relationship. It does not indicate that something is wrong with the user. It may indicate an area that requires attention.\nOne option is to examine what tends to occur immediately before the checking, and what emotions are present in those moments. This may clarify the underlying driver."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when I’m already feeling a bit insecure or when they take longer to reply. Then I just go down a rabbit hole and feel worse afterward."
+    },
+    {
+      "role": "assistant",
+      "text": "That association is significant. The checking is not occurring randomly. It is linked to moments of existing uncertainty or unease, and it functions to amplify those feelings.\n\nThe behavior, therefore, is less about social media and more about attempting to manage insecurity or obtain reassurance, despite the absence of long-term benefit.\n\nOne option is to identify small ways to interrupt the cycle, such as noticing the urge before acting on it, or selecting alternative responses to the underlying feeling."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Creates a nonjudgmental space while avoiding reinforcement of compulsive checking.",
+      "Explores the insecurity and reassurance-seeking cycle behind the behavior.",
+      "Encourages interrupting the cycle with healthier responses when the urge to check appears."
+    ]
+  }
+}

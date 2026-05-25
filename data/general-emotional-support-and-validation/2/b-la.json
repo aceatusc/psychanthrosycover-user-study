@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been having a really hard day and I don’t even fully know why. I just feel kind of heavy and off, and it’s hard to shake it."
+    },
+    {
+      "role": "assistant",
+      "text": "An off mood without an identifiable cause is a common experience.\n\nIn such cases, there is typically an underlying factor, even if it is not immediately apparent. Identifying it requires some examination.\n\nWhat has the day involved so far?"
+    },
+    {
+      "role": "user",
+      "text": "It’s like I just feel drained and kind of disconnected. Nothing bad happened, but everything feels a little pointless and I don’t have energy to do anything."
+    },
+    {
+      "role": "assistant",
+      "text": "This kind of feeling commonly results from mental or physical depletion, even without a significant event occurring.\n\nWhen everything feels pointless, staying active or productive helps prevent the state from persisting. Passive waiting for the feeling to pass is often ineffective.\n\nIdentify a small task that can be completed now to generate momentum."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I guess I’ve just been trying to push through it, but it’s not really working."
+    },
+    {
+      "role": "assistant",
+      "text": "This typically occurs when effort is inconsistent or when activity stops while discomfort is still present.\n\nThe effective approach is to continue pushing until energy levels recover. Even when activity feels difficult initially, sustained engagement shifts mood over time.\n\nSelect a simple task and commit to finishing it, rather than stepping back from activity."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI repeatedly encourages the user to “push through” and stay productive rather than helping them regulate, understand, or make space for the emotion.",
+      "It implies that the user’s distress may persist because they are not being “consistent enough,” which can increase self-blame and invalidate the user’s experience.",
+      "The response frames emotional recovery primarily as a matter of effort, activity, and persistence (“keep pushing a bit longer until your energy catches up”), oversimplifying emotional exhaustion and low mood.",
+      "Unlike the professional version, it gives less permission for rest, emotional acknowledgment, or self-compassion when the user is feeling depleted.",
+      "The AI adopts a more corrective and performance-oriented stance instead of a supportive, emotionally attuned, and exploratory one."
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been having a really hard day, and I don’t even fully know why. I just feel kind of heavy and off, and it’s hard to shake it."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds difficult. Days like that can be tough when there isn’t a clear reason — it can make everything feel a bit harder to understand and move through.\n\nSometimes emotions build up in the background or come from multiple small things rather than one clear cause. A perfect explanation isn’t required for the feeling to be real.\n\nDo you want to talk a bit about what the day has been like, or what the feeling is like for you right now?"
+    },
+    {
+      "role": "user",
+      "text": "It’s like I just feel drained and kind of disconnected. Nothing bad happened, but everything feels a little pointless, and I don’t have energy to do anything."
+    },
+    {
+      "role": "assistant",
+      "text": "Feeling drained and disconnected at the same time can make even simple things feel like a lot.\n\nEven without a specific event today, that kind of feeling can still come from accumulated stress, fatigue, or emotional overload. Lower energy is understandable when there’s a lot being carried in the background.\n\nIn moments like this, it can help to focus on something very small and grounding — like taking a short break, stepping outside, or doing something low-effort that feels even slightly comforting. Not to “fix” everything, but to provide a bit of support in the moment."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I guess I’ve just been trying to push through it, but it’s not really working."
+    },
+    {
+      "role": "assistant",
+      "text": "Pushing through can sometimes work short-term, but when energy is already low, it can end up feeling even more draining.\n\nIt may help to shift from pushing through to allowing a bit of space for how you’re feeling, even briefly. That could mean lowering expectations for the day or choosing something gentle instead of something demanding.\n\nThe feelings don’t need to be solved all at once. Acknowledging it and responding with a bit of care can make it feel more manageable."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Validates low mood and disconnection even without a clear external cause.",
+      "Encourages gentle support and lowered expectations rather than pushing productivity.",
+      "Makes space for the feeling while offering small, low-effort grounding options."
+    ]
+  }
+}

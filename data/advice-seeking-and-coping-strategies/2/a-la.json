@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really overwhelmed lately and I don’t know what to do about it. I have a lot of responsibilities, and it feels like I can’t keep up with everything."
+    },
+    {
+      "role": "assistant",
+      "text": "The described situation is stressful when multiple responsibilities accumulate at once. Seeking a way to manage that feeling is understandable.\n\nWhen tasks feel overwhelming, breaking them down and focusing on what is most immediate or manageable is one option. Prior to discussing strategies, identifying what has been taking up most energy recently is useful. What has been the main source of demand?"
+    },
+    {
+      "role": "user",
+      "text": "It’s mostly work and school. I keep thinking about everything I have to do, and instead of starting, I just get stuck and avoid it."
+    },
+    {
+      "role": "assistant",
+      "text": "Avoidance is a common response to feeling overwhelmed. When tasks feel urgent, initiating any of them becomes harder.\n\nOne approach is to narrow focus to a very small, concrete starting point—selecting one task and defining the first step so that it feels almost too easy. This reduces the sense of pressure and makes it easier to begin.\n\nExternalizing tasks—writing them down—also reduces the cognitive load of tracking everything mentally. Is this approach doable at the present time?"
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think breaking it down might help, but I’m worried I’ll just fall back into the same pattern again."
+    },
+    {
+      "role": "assistant",
+      "text": "That concern is valid. Patterns of this kind do not usually change all at once, and recurrence is normal.\n\nRather than expecting complete elimination, framing change as experimentation is useful—introducing a small change and observing what works, rather than aiming for a perfect system. Initiating one task differently than usual constitutes a meaningful shift.\n\nIdentifying triggers of avoidance is also an option, increasing awareness of when it occurs and informing the response in the moment."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Normalizes avoidance as a common response to overwhelm instead of framing it as lack of discipline.",
+      "Suggests small, concrete starting points and externalizing tasks to reduce cognitive load.",
+      "Frames change as experimentation and pattern awareness rather than perfect consistency."
+    ]
+  }
+}

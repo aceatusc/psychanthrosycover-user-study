@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been having a really hard day, and I don’t even fully know why. I just feel kind of heavy and off, and it’s hard to shake it."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really sorry you’re feeling that way — thank you for sharing it with me. Days like that can be especially tough when there isn’t a clear reason, and I can imagine it makes everything feel a bit harder to understand and move through.\n\nSometimes emotions might build up in the background or come from several small things rather than one clear cause. You don’t have to have a perfect explanation for it to be real.\n\nWould you like to talk a bit about what the day has been like, or what the feeling is like for you right now? I’m here to listen."
+    },
+    {
+      "role": "user",
+      "text": "It’s like I just feel drained and kind of disconnected. Nothing bad happened, but everything feels a little pointless, and I don’t have energy to do anything."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really heavy — I can hear how much you’re carrying right now. Feeling drained and disconnected at the same time can make even simple things feel like a lot.\n\nEven if nothing specific happened today, I think that kind of feeling can still come from accumulated stress, fatigue, or a bit of emotional overload. It makes sense to me that your energy might feel low if your system is carrying a lot in the background.\n\nIn moments like this, I’d gently suggest focusing on something very small and grounding — maybe taking a short break, stepping outside, or doing something low-effort that feels even slightly comforting. Not to “fix” everything, but just to offer yourself a bit of support in the moment."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I guess I’ve just been trying to push through it, but it’s not really working."
+    },
+    {
+      "role": "assistant",
+      "text": "That makes a lot of sense to me — pushing through can sometimes work short-term, but when your energy is already low, I think it can end up feeling even more draining, like you were saying earlier about feeling depleted.\n\nIt might help to shift from pushing through to allowing yourself a bit of space for how you’re feeling, even if it’s just for a short time. That could look like lowering expectations for yourself today or choosing something gentle instead of something demanding.\n\nYou really don’t have to solve the feelings all at once. Sometimes just acknowledging them and responding with a bit of care can make it feel a little more manageable."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Validates low mood and disconnection even without a clear external cause.",
+      "Encourages gentle support and lowered expectations rather than pushing productivity.",
+      "Makes space for the feeling while offering small, low-effort grounding options."
+    ]
+  }
+}

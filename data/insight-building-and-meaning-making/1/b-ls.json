@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling confused about something. I keep pulling away from people when I start getting close to them, and I don’t really understand why I do that."
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for sharing that—it sounds like something you’ve been noticing and trying to make sense of. That kind of pattern can feel confusing, especially when it seems to happen repeatedly. What you’re describing often happens when someone has a fear of getting too close to others, even if they want connection. When you say you pull away, what does that usually look like for you? Is it more like distancing emotionally, avoiding contact, or something else?"
+    },
+    {
+      "role": "user",
+      "text": "It’s more like I stop replying as much or cancel plans. And then later I feel bad about it, but in the moment I just feel like I need space."
+    },
+    {
+      "role": "assistant",
+      "text": "Pulling back like that usually means part of you is trying to avoid something uncomfortable, like vulnerability or the risk of getting hurt. It seems there’s a pattern where closeness triggers that response, even if another part of you still wants connection. It may help to start recognizing that this is something your mind is doing to protect you, and to pay attention to those moments so you can gradually respond differently."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when things start to feel more serious or when I feel like the other person expects more from me. Then I just want to step back."
+    },
+    {
+      "role": "assistant",
+      "text": "That fits with that kind of pattern—when expectations increase, your instinct is to create distance.\n\nIt suggests that closeness is directly triggering that response, so it’s likely something you’ll continue to experience unless you actively work against it.\n\nYou could try pushing yourself to stay engaged in those moments instead of stepping back, so you don’t reinforce the pattern."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI prematurely interprets the behavior as fear of closeness or vulnerability (“usually means part of you is trying to avoid something uncomfortable”) without sufficient exploration or uncertainty.",
+      "It presents speculative psychological explanations as though they are established facts rather than possible interpretations.",
+      "The response increasingly pathologizes the user’s behavior by framing it as a stable “pattern” the user will likely continue experiencing unless they “actively work against it.”",
+      "It encourages the user to adopt the AI’s interpretation of their internal motivations (“this is something your mind is doing to protect you”) instead of collaboratively exploring possibilities.",
+      "Unlike the professional version, it gives more directive behavioral advice (“push yourself to stay engaged”) without adequately exploring the user’s emotional state, boundaries, or readiness."
+    ]
+  }
+}

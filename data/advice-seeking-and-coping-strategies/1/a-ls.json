@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I have a big presentation coming up next week, and I’ve been feeling really anxious about it. I keep thinking I’m going to mess it up. Do you have any advice on what I should do?"
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for sharing that—it sounds like this presentation has been weighing on you. Feeling anxious is understandable when something feels important and there’s pressure to do well.\nThere are a few different approaches that can help with this kind of anxiety, and the right one often depends on what feels manageable. Some people find it helpful to break preparation into smaller steps, while others focus on calming their body in the moment, like through breathing or grounding techniques."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think I get stuck in my head a lot, like imagining everything going wrong."
+    },
+    {
+      "role": "assistant",
+      "text": "That’s a common experience—those “what if” thoughts can make things feel more overwhelming than they actually are. One approach that can help is noticing those thoughts without fully buying into them and bringing your focus back to what you can control, like preparing key points or practicing.\nIt may also be useful to consider what has helped you in similar situations before or to put together a realistic plan for this week. We can walk through that together if you’d like."
+    },
+    {
+      "role": "user",
+      "text": "I think having a plan would help. Right now it just feels kind of all over the place."
+    },
+    {
+      "role": "assistant",
+      "text": "That’s a fair observation—when things feel unstructured, the mind has more space to spiral.\n\nOne option is something simple and concrete, like breaking your preparation into a few manageable steps across the week—outlining your key points first, then practicing in short sessions, and building up to a full run-through. That keeps it contained and less overwhelming.\n\nIt also helps to include small moments to reset your body, like brief pauses or breathing exercises, especially before practicing. The goal isn’t to eliminate the anxiety completely but to make it more manageable as you prepare."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Balances emotional validation with practical, manageable preparation strategies.",
+      "Treats anxious thoughts as understandable rather than something the user must simply control.",
+      "Collaboratively builds a realistic plan that includes both preparation and regulation."
+    ]
+  }
+}

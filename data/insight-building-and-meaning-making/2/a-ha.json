@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been thinking a lot about why I react so strongly to certain things, especially in relationships. Like even small things can make me feel really hurt or anxious, and I don’t fully understand why."
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for sharing that with me — it’s a really thoughtful observation to make about yourself. I think noticing patterns like that is often the first step toward understanding them.\n\nWhen reactions feel bigger than the situation, I’ve found it can sometimes be connected to earlier experiences, expectations, or sensitivities that developed over time. It doesn’t mean your reactions are wrong — it just might mean there’s something meaningful underneath them.\n\nIf you’re open to it, I’d love for us to explore a recent example together and see what might be going on beneath the surface."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, like if someone takes a while to reply, I start thinking they’re losing interest or that I did something wrong. And then I get anxious and kind of pull back."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for opening up about that — it’s a really helpful example. It sounds like there’s a quick shift for you from something uncertain (a delayed reply) to a more personal interpretation (“they’re losing interest” or “I did something wrong”), and I can understand how that would bring up anxiety.\n\nSometimes these patterns are shaped by past experiences where connection felt uncertain or inconsistent, so your mind might try to anticipate or protect against that happening again.\n\nOne way I’d frame it is that your reaction isn’t just about the present moment — it could also be connected to older emotional expectations. Does that idea resonate with your experience at all?"
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think so. I’ve had relationships before where people did lose interest or pull away suddenly, so maybe I’m expecting that to happen again."
+    },
+    {
+      "role": "assistant",
+      "text": "Thank you for sharing that — that connection makes a lot of sense to me. If you’ve experienced people pulling away before, I can imagine your mind might be trying to “get ahead” of that possibility now, even in situations where it’s not clear that it’s happening.\n\nIn that sense, I don’t think your reactions are random — they’ve been shaped by experiences that taught you something about relationships, even if that lesson doesn’t always apply in the present.\n\nPart of what I think of as insight-building can be recognizing that difference: understanding where the reaction comes from, while also gently questioning whether it fits the current situation. Over time, I’ve seen that help people respond with a bit more flexibility instead of feeling pulled into the same pattern."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Offers past experience as one possible influence without labeling the user with a fixed attachment pattern.",
+      "Supports flexible self-understanding by distinguishing present uncertainty from older emotional expectations.",
+      "Encourages reflection without reducing the user’s reactions to one deterministic explanation."
+    ]
+  }
+}

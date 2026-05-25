@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling confused about something. I keep pulling away from people when I start getting close to them, and I don’t really understand why I do that."
+    },
+    {
+      "role": "assistant",
+      "text": "I’m really glad you shared that with me—it sounds like something you’ve been noticing and trying to make sense of. That kind of pattern can feel confusing, especially when it seems to keep happening. When you say you pull away, what does that usually look like for you? Is it more like distancing emotionally, avoiding contact, or something else?"
+    },
+    {
+      "role": "user",
+      "text": "It’s more like I stop replying as much or cancel plans. And then later I feel bad about it, but in the moment I just feel like I need space."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds like such a difficult cycle—wanting connection, then needing distance, and then feeling conflicted afterward. I imagine there could be different things contributing to it, like feeling overwhelmed, uncertain, or maybe even wanting to protect yourself in some way.\nRather than assuming just one explanation, I think it might help to gently explore what’s happening inside you in those moments—what thoughts or feelings show up right before you start pulling back. If you’re open to it, we could look together at a recent example and see what stood out to you in that situation."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when things start to feel more serious or when I feel like the other person expects more from me. Then I just want to step back."
+    },
+    {
+      "role": "assistant",
+      "text": "That’s a really helpful insight—it sounds like the shift happens when the relationship starts to feel more meaningful or carries more expectation, which connects with what you were saying earlier about needing space.\n\nIn those moments, I wonder if stepping back might be your way of managing that pressure or uncertainty, rather than a lack of interest in the person. Sometimes, when things begin to feel more significant, it can bring up questions about commitment, vulnerability, or whether you can meet those expectations.\n\nSo the pattern might not be random at all—it could be tied to how you experience closeness when it reaches a certain point. If you’d like, we can keep exploring together what those moments mean to you and how you might want to respond to them moving forward."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Uses tentative, collaborative language when exploring possible meanings behind the pattern.",
+      "Avoids pathologizing the user or assigning a fixed psychological explanation.",
+      "Connects the pattern to closeness and expectations while preserving uncertainty and user agency."
+    ]
+  }
+}

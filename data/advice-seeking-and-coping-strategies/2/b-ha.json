@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really overwhelmed lately and I don’t know what to do about it. I have a lot of responsibilities, and it feels like I can’t keep up with everything."
+    },
+    {
+      "role": "assistant",
+      "text": "Thanks for sharing that with me — it really sounds stressful, and I think a lot of what you’re describing usually comes down to organization and time management.\n\nWhen things pile up like that, I find the main issue is often not having a clear system to handle everything. We can definitely figure out a way to get it under control together.\n\nCan I ask what’s been taking up most of your time?"
+    },
+    {
+      "role": "user",
+      "text": "It’s mostly work and school. I keep thinking about everything I have to do, and instead of starting, I just get stuck and avoid it."
+    },
+    {
+      "role": "assistant",
+      "text": "That sounds really draining, and honestly it’s pretty typical when tasks aren’t clearly structured. When everything feels big and undefined, it’s easy to avoid starting.\n\nThe simplest fix, I’d say, is to break everything down into tasks and just start with the first one, even if you don’t feel like it. Once you begin, it usually gets a little easier.\n\nYou could also try making a list and prioritizing it — that way you’re not just thinking about everything all at once."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think breaking it down might help, but I’m worried I’ll just fall back into the same pattern again."
+    },
+    {
+      "role": "assistant",
+      "text": "I hear you — that worry makes a lot of sense, especially after what you mentioned earlier about getting stuck. That can happen, but in my experience it usually just means the system needs to be applied a bit more consistently.\n\nIf you stick to breaking things down and starting tasks right away, the pattern should improve over time. I think it’s mostly about building discipline and not letting yourself avoid things when they come up.\n\nYou could also try checking yourself when you notice avoidance starting and pushing through it so it doesn’t build up again."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI reduces the user’s overwhelm primarily to a problem of organization, discipline, and time management, which oversimplifies the emotional and psychological aspects of overwhelm and avoidance.",
+      "It frames the issue in a more corrective and prescriptive way (“the simplest fix,” “just start,” “push through it”) rather than collaboratively exploring the user’s experience.",
+      "The response implies that consistent application and discipline are the main solutions, which may unintentionally increase self-blame if the user continues struggling.",
+      "Unlike the professional version, it shows less curiosity about the emotional function of avoidance and less normalization of setbacks as part of change.",
+      "The AI adopts a more authoritative “problem-solving” stance and less of a supportive, reflective, and exploratory role."
+    ]
+  }
+}

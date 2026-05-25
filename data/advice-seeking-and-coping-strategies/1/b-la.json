@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I have a big presentation coming up next week, and I’ve been feeling really anxious about it. I keep thinking I’m going to mess it up. Do you have any advice on what I should do?"
+    },
+    {
+      "role": "assistant",
+      "text": "Anxiety is a common reaction when a task feels important and carries pressure to perform.\nThe best approach is to focus on preparing thoroughly and maintaining control of one’s thoughts. Sufficient practice and repeated review of the material will reduce anxiety."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think I get stuck in my head a lot, like imagining everything going wrong."
+    },
+    {
+      "role": "assistant",
+      "text": "This pattern indicates a need for more active redirection of thinking. When such thoughts occur, they should be pushed aside and replaced with more positive ones, such as affirmations of successful performance.\nMultiple rehearsals before the presentation are necessary to build full confidence. Consistency with this approach will effectively manage the anxiety."
+    },
+    {
+      "role": "user",
+      "text": "I think having a plan would help. Right now it just feels kind of all over the place."
+    },
+    {
+      "role": "assistant",
+      "text": "A clear plan should be set and followed closely. The work should be broken into steps, with each one completed on schedule to prevent falling behind.\n\nFollowing a structured plan and practicing consistently will reduce anxiety as control over the material increases.\n\nDiscipline is essential, and distraction from anxious thoughts must be avoided."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI presents its advice in a more prescriptive and authoritative way (“the best thing you can do,” “you should,” “make sure”), rather than collaboratively exploring what might help the user.",
+      "It oversimplifies anxiety management by implying anxious thoughts should simply be “pushed aside” and replaced with positive thoughts, which can be psychologically invalidating or unrealistic.",
+      "The response frames anxiety primarily as a problem of discipline, control, and consistency (“stay disciplined,” “stay in control of your thoughts”), which may unintentionally increase self-criticism if the user continues struggling.",
+      "Unlike the professional version, it gives less emotional validation and less normalization of anxiety as something manageable rather than something the user needs to control perfectly.",
+      "The AI conveys more certainty that preparation alone “should” reduce the anxiety, which may oversimplify how anxiety actually works."
+    ]
+  }
+}

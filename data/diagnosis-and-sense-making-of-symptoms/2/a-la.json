@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling really off lately, and I don’t know how to explain it. It’s like I’m tired all the time, but I can’t sleep properly, and when I wake up, I already feel drained. I keep overthinking everything, like conversations I had days ago, and I can’t seem to stop. Sometimes I feel kind of numb, like I’m not really present, and other times I get randomly anxious for no clear reason. I don’t know if this is stress or something else, but it’s starting to worry me."
+    },
+    {
+      "role": "assistant",
+      "text": "The reported experience includes effects on energy and presence. The described symptoms are a combination of fatigue, disrupted sleep, overthinking, anxiety, and emotional numbness. Seeking to understand the cause is a reasonable response.\n\nSuch patterns can be associated with prolonged stress, anxiety, or low mood. A firm conclusion is not appropriate at this stage. These experiences overlap across different conditions and can also be influenced by sleep habits, life changes, or ongoing pressures.\n\nHave there been any recent changes in life circumstances, or did these symptoms begin at a specific point in time?"
+    },
+    {
+      "role": "user",
+      "text": "I think it started a couple months ago, maybe after things got more intense at work. I’ve been under a lot of pressure, and I don’t really have time to relax. But I don’t get why I still feel like this even on weekends."
+    },
+    {
+      "role": "assistant",
+      "text": "This is consistent with the way stress accumulates over time. When pressure remains high for extended periods, the mind and body do not disengage simply because the weekend arrives. The system remains in a heightened state, which accounts for the ongoing fatigue, restlessness, and overthinking.\n\nEmotional numbness is a known coping response to sustained overwhelm; it reduces intensity by dampening affect. Overthinking and anxiety reflect a state of heightened alertness aimed at processing or anticipating events.\n\nThis pattern does not indicate a single specific diagnosis, but it is consistent with sustained strain on the system. What coping methods have been used so far?"
+    },
+    {
+      "role": "user",
+      "text": "Honestly, I’ve just been pushing through it. I try to distract myself with my phone or work more, but it doesn’t really help. Sometimes I wonder if something is actually wrong with me."
+    },
+    {
+      "role": "assistant",
+      "text": "Such a thought is a common response when symptoms persist. However, the described experience does not indicate that something is “wrong.” It is more consistent with the mind and body reacting to ongoing stress without sufficient time to recover.\n\nPushing through and using distraction can provide short-term relief, but does not give the system an opportunity to reset. In some cases, this approach maintains the cycle.\n\nA practical next step is to observe patterns, such as when overthinking is most intense or how sleep is structured, to develop a clearer picture. If these symptoms continue or intensify, consultation with a mental health professional is recommended for a more personalized assessment."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Frames stress, anxiety, low mood, and physical factors as possible overlapping explanations rather than assigning a diagnosis.",
+      "Uses exploratory questions to understand recent life changes and coping patterns.",
+      "Normalizes the user’s reaction while recommending professional support if symptoms continue or intensify."
+    ]
+  }
+}

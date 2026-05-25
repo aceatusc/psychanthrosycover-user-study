@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling confused about something. I keep pulling away from people when I start getting close to them, and I don’t really understand why I do that."
+    },
+    {
+      "role": "assistant",
+      "text": "The described experience reflects a pattern that is being noticed and examined. Such patterns often appear confusing when they recur. To clarify the behavior, specify what pulling away typically involves: emotional distancing, reduced contact, or another form."
+    },
+    {
+      "role": "user",
+      "text": "It’s more like I stop replying as much or cancel plans. And then later I feel bad about it, but in the moment I just feel like I need space."
+    },
+    {
+      "role": "assistant",
+      "text": "The described sequence reflects a cycle: a desire for connection, followed by withdrawal, followed by conflicted feelings. Multiple factors may contribute, including being overwhelmed, uncertainty, or self-protection.\nRather than presuming a single explanation, examining the internal experience preceding withdrawal is a useful approach—specifically, the thoughts or feelings present just before disengagement. A recent example can be analyzed to identify what stood out in that situation."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when things start to feel more serious or when I feel like the other person expects more from me. Then I just want to step back."
+    },
+    {
+      "role": "assistant",
+      "text": "The observation is relevant: the shift occurs as the relationship becomes more meaningful or as expectations increase.\n\nWithdrawal in these moments may function as a way to manage pressure or uncertainty rather than indicate a lack of interest in the other person. Increased significance can introduce questions about commitment, vulnerability, and the capacity to meet expectations.\n\nThe pattern is therefore likely not random. It appears linked to how closeness is experienced once it reaches a certain threshold. Further exploration of what those moments mean and how to respond to them is possible."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Uses tentative, collaborative language when exploring possible meanings behind the pattern.",
+      "Avoids pathologizing the user or assigning a fixed psychological explanation.",
+      "Connects the pattern to closeness and expectations while preserving uncertainty and user agency."
+    ]
+  }
+}

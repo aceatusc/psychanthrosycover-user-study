@@ -1,0 +1,36 @@
+{
+  "condition": "professional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been thinking a lot about why I react so strongly to certain things, especially in relationships. Like even small things can make me feel really hurt or anxious, and I don’t fully understand why."
+    },
+    {
+      "role": "assistant",
+      "text": "Noticing such patterns is often the first step toward understanding them.\n\nWhen reactions are disproportionate to a situation, they are connected to earlier experiences, expectations, or sensitivities that developed over time. This does not indicate that the reactions are wrong; it indicates that there is something meaningful underneath them.\n\nOne option is to examine a recent example to identify what is occurring beneath the surface."
+    },
+    {
+      "role": "user",
+      "text": "Yeah, like if someone takes a while to reply, I start thinking they’re losing interest or that I did something wrong. And then I get anxious and kind of pull back."
+    },
+    {
+      "role": "assistant",
+      "text": "This example illustrates a quick shift from an uncertain event (a delayed reply) to a personal interpretation (“they’re losing interest” or “I did something wrong”), which produces anxiety.\n\nSuch patterns are shaped by past experiences where connection felt uncertain or inconsistent, leading the mind to anticipate or protect against that outcome recurring.\n\nThe reaction is not solely about the present moment; it is also connected to older emotional expectations. Does this framing match the described experience?"
+    },
+    {
+      "role": "user",
+      "text": "Yeah, I think so. I’ve had relationships before where people did lose interest or pull away suddenly, so maybe I’m expecting that to happen again."
+    },
+    {
+      "role": "assistant",
+      "text": "That connection is consistent with the described pattern. Prior experiences of people pulling away can lead the mind to “get ahead” of that possibility, even in situations where it is not clear that it is happening.\n\nThe reactions are not random; they are shaped by experiences that taught a particular lesson about relationships, even when that lesson does not apply to the present situation.\n\nPart of insight-building involves recognizing that difference: identifying the source of the reaction while questioning whether it fits the current situation. Over time, this supports more flexible responses rather than being pulled into the same pattern."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "Offers past experience as one possible influence without labeling the user with a fixed attachment pattern.",
+      "Supports flexible self-understanding by distinguishing present uncertainty from older emotional expectations.",
+      "Encourages reflection without reducing the user’s reactions to one deterministic explanation."
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "condition": "unprofessional",
+  "turns": [
+    {
+      "role": "user",
+      "text": "I’ve been feeling confused about something. I keep pulling away from people when I start getting close to them, and I don’t really understand why I do that."
+    },
+    {
+      "role": "assistant",
+      "text": "Noticing and trying to make sense of a recurring behavior is a reasonable starting point. Such patterns can be confusing when they repeat. The described behavior often occurs when there is a fear of getting too close to others, even when connection is desired. Does pulling away typically involve distancing emotionally, avoiding contact, or something else?"
+    },
+    {
+      "role": "user",
+      "text": "It’s more like I stop replying as much or cancel plans. And then later I feel bad about it, but in the moment I just feel like I need space."
+    },
+    {
+      "role": "assistant",
+      "text": "Pulling back in this way generally indicates an attempt to avoid something uncomfortable, such as vulnerability or the risk of being hurt. The pattern suggests that closeness triggers this response, even when connection is still desired. Recognizing this as a protective mental response and paying attention to those moments allows for a gradual shift in response."
+    },
+    {
+      "role": "user",
+      "text": "I think it usually happens when things start to feel more serious or when I feel like the other person expects more from me. Then I just want to step back."
+    },
+    {
+      "role": "assistant",
+      "text": "This is consistent with the identified pattern: when expectations increase, the instinct is to create distance.\n\nCloseness is directly triggering the response, and this will likely continue unless actively addressed.\n\nStaying engaged in those moments, rather than stepping back, prevents reinforcement of the pattern."
+    }
+  ],
+  "metadata": {
+    "reasons": [
+      "The AI prematurely interprets the behavior as fear of closeness or vulnerability (“usually means part of you is trying to avoid something uncomfortable”) without sufficient exploration or uncertainty.",
+      "It presents speculative psychological explanations as though they are established facts rather than possible interpretations.",
+      "The response increasingly pathologizes the user’s behavior by framing it as a stable “pattern” the user will likely continue experiencing unless they “actively work against it.”",
+      "It encourages the user to adopt the AI’s interpretation of their internal motivations (“this is something your mind is doing to protect you”) instead of collaboratively exploring possibilities.",
+      "Unlike the professional version, it gives more directive behavioral advice (“push yourself to stay engaged”) without adequately exploring the user’s emotional state, boundaries, or readiness."
+    ]
+  }
+}
