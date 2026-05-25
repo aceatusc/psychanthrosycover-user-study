@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - background.md
-      - data/**
-      - docs/**
-      - scripts/build-pages.mjs
-      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:
