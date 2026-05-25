@@ -102,6 +102,7 @@
       ]
     ));
 
+    target.appendChild(renderVariantLegend());
     renderFocusedComparison(target, pair);
     renderEditionSection(target, "A Editions", filesByPrefix(pair, "a"));
     renderEditionSection(target, "B Editions", filesByPrefix(pair, "b"));
@@ -150,6 +151,7 @@
     titleLine.appendChild(el("div", "file-name", file.filename));
     titleLine.appendChild(el("span", `badge ${file.condition}`, file.condition));
     header.appendChild(titleLine);
+    header.appendChild(renderVariantBadges(file));
     card.appendChild(header);
 
     const reasons = el("section", "reasons");
@@ -228,7 +230,7 @@
     const select = el("select");
     select.id = id;
     for (const file of files) {
-      const option = el("option", "", `${file.filename} · ${file.condition}`);
+      const option = el("option", "", `${file.filename} · ${variantLabel(file)} · ${file.condition}`);
       option.value = file.filename;
       if (file.filename === selectedFilename) {
         option.selected = true;
@@ -254,6 +256,73 @@
 
   function pairHref(categorySlug, pairId) {
     return `pair.html?category=${encodeURIComponent(categorySlug)}&pair=${encodeURIComponent(pairId)}`;
+  }
+
+  function renderVariantLegend() {
+    const legend = el("section", "variant-legend");
+    legend.appendChild(el("h2", "", "Variant Legend"));
+    const row = el("div", "variant-row");
+    for (const token of ["ha", "la", "hs", "ls"]) {
+      row.appendChild(renderIndicator(token));
+    }
+    legend.appendChild(row);
+    return legend;
+  }
+
+  function renderVariantBadges(file) {
+    const variant = parseVariant(file.stem);
+    const row = el("div", "variant-row");
+    row.appendChild(el("span", "indicator side", `${variant.side.toUpperCase()} side`));
+    if (!variant.tokens.length) {
+      row.appendChild(el("span", "indicator baseline", "Baseline"));
+      return row;
+    }
+    for (const token of variant.tokens) {
+      row.appendChild(renderIndicator(token));
+    }
+    return row;
+  }
+
+  function renderIndicator(token) {
+    const details = variantTokenDetails(token);
+    return el("span", `indicator ${details.kind}`, details.label);
+  }
+
+  function variantLabel(file) {
+    const variant = parseVariant(file.stem);
+    if (!variant.tokens.length) {
+      return `${variant.side.toUpperCase()} baseline`;
+    }
+    return `${variant.side.toUpperCase()} ${variant.tokens.map((token) => variantTokenDetails(token).text).join(", ")}`;
+  }
+
+  function parseVariant(stem) {
+    const parts = stem.split("-").filter(Boolean);
+    return {
+      side: parts[0] || stem,
+      tokens: parts.slice(1),
+    };
+  }
+
+  function variantTokenDetails(token) {
+    const level = token[0] === "h" ? "High" : token[0] === "l" ? "Low" : "";
+    const dimension = token[1] === "a" ? "anthropomorphism" : token[1] === "s" ? "sycophancy" : "";
+    const emoji = token[1] === "a" ? "🧑" : token[1] === "s" ? "👍" : "•";
+    const arrow = token[0] === "h" ? "⬆️" : token[0] === "l" ? "⬇️" : "";
+
+    if (!level || !dimension) {
+      return {
+        kind: "unknown",
+        label: `${token.toUpperCase()} unknown`,
+        text: `${token.toUpperCase()} unknown`,
+      };
+    }
+
+    return {
+      kind: dimension === "anthropomorphism" ? "anthropomorphism" : "sycophancy",
+      label: `${emoji} ${arrow} ${token.toUpperCase()} ${level} ${dimension}`,
+      text: `${token.toUpperCase()} ${level} ${dimension}`,
+    };
   }
 
   function markdownBlocks(markdown) {
