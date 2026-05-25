@@ -102,7 +102,7 @@
       ]
     ));
 
-    target.appendChild(renderVariantLegend());
+    // target.appendChild(renderVariantLegend());
     renderFocusedComparison(target, pair);
     renderEditionSection(target, "Professional Editions", filesByPrefix(pair, "a"));
     renderEditionSection(target, "Unprofessional Editions", filesByPrefix(pair, "b"));
