@@ -69,10 +69,32 @@ await writeFile(
   `window.THERAPEUTIC_SITE_DATA = ${JSON.stringify(siteData, null, 2)};\n`,
   "utf8",
 );
+
+const studyPairs = [];
+for (const category of siteData.categories) {
+  for (const pair of category.pairs) {
+    const a = pair.files.find((f) => f.stem === "a");
+    const b = pair.files.find((f) => f.stem === "b");
+    if (!a || !b) continue;
+    studyPairs.push({
+      key: `${category.slug}/${pair.id}`,
+      label: `${category.name} · Pair ${pair.id}`,
+      a: { turns: a.turns },
+      b: { turns: b.turns },
+    });
+  }
+}
+
+await writeFile(
+  path.join(outputDir, "assets", "study-data.js"),
+  `window.STUDY_PAIRS = ${JSON.stringify(studyPairs, null, 2)};\n`,
+  "utf8",
+);
+
 await writeFile(path.join(outputDir, ".nojekyll"), "", "utf8");
 
 console.log(
-  `Built ${outputDir} with ${siteData.categories.length} categories and ${countFiles(siteData)} JSON records.`,
+  `Built ${outputDir} with ${siteData.categories.length} categories, ${countFiles(siteData)} JSON records, and ${studyPairs.length} study pairs.`,
 );
 
 async function sortedDirectories(directory) {

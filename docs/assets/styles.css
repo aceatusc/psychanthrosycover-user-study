@@ -490,6 +490,158 @@ select {
   margin-top: 5px;
 }
 
+/* ── Study ─────────────────────────────────────────────────────────────── */
+
+.study-hero {
+  display: grid;
+  gap: 24px;
+  max-width: 820px;
+  margin-bottom: 40px;
+}
+
+.study-box {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.study-box h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.study-box ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.study-box li {
+  font-size: 14px;
+  color: #343a35;
+}
+
+.study-start-form {
+  display: grid;
+  gap: 12px;
+  max-width: 360px;
+}
+
+.study-start-form input[type="text"] {
+  min-height: 44px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+}
+
+.study-start-form input[type="text"]:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn-primary {
+  min-height: 44px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-primary:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.btn-primary:not(:disabled):hover {
+  opacity: 0.88;
+}
+
+.btn-next {
+  margin-top: 8px;
+}
+
+.study-progress {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.progress-bar {
+  height: 5px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+.study-question {
+  margin: 20px 0 12px;
+}
+
+.question-text {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.study-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 8px;
+}
+
+.choice-btn {
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+}
+
+.choice-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.choice-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ── End Study ──────────────────────────────────────────────────────────── */
+
 @media (max-width: 780px) {
   .site-header {
     align-items: flex-start;
