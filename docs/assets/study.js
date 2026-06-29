@@ -196,6 +196,9 @@
       'Please note this ID — you may need it if you contact the research team.'));
     sec.appendChild(pidBox);
 
+    sec.appendChild(el('p', 'refresh-warning',
+      'Do not refresh this page — if you do, the survey will start over.'));
+
     const btn = el('button', 'btn-primary', 'Start →');
     btn.addEventListener('click', renderDemographics);
     sec.appendChild(btn);
