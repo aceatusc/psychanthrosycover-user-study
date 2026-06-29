@@ -492,6 +492,22 @@ select {
 
 /* ── Study ─────────────────────────────────────────────────────────────── */
 
+.study-header {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 12px clamp(18px, 4vw, 48px);
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.study-header-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.01em;
+}
+
 .study-hero {
   display: grid;
   gap: 24px;
@@ -641,6 +657,468 @@ select {
 }
 
 /* ── End Study ──────────────────────────────────────────────────────────── */
+
+/* ── Validation Study – All custom styles ───────────────────────────────── */
+
+/* Centered hero variant (intro, instructions, done screens) */
+.study-hero--centered {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.study-hero--centered .study-box,
+.study-hero--centered .pid-box,
+.study-hero--centered .demo-form,
+.study-hero--centered .instructions-body,
+.study-hero--centered .instructions-preview,
+.study-hero--centered ul,
+.study-hero--centered .btn-primary {
+  text-align: left;
+}
+
+.study-hero--centered .btn-primary {
+  margin-inline: auto;
+}
+
+/* Participant ID */
+.pid-box {
+  display: grid;
+  gap: 6px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  max-width: 440px;
+  margin-inline: auto;
+}
+
+.pid-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pid-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.pid-value {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: ui-monospace, 'Cascadia Code', monospace;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.pid-note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Demographics */
+.demo-heading {
+  font-size: 26px;
+}
+
+.demo-form {
+  display: grid;
+  gap: 22px;
+  max-width: 640px;
+  margin: 8px 0;
+}
+
+.demo-field {
+  display: grid;
+  gap: 8px;
+}
+
+.demo-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.req-mark {
+  color: var(--warn);
+}
+
+.demo-select {
+  min-height: 42px;
+  padding: 8px 36px 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  max-width: 480px;
+  width: 100%;
+  appearance: auto;
+}
+
+.demo-text-input,
+.demo-other-input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  max-width: 320px;
+  width: 100%;
+}
+
+.demo-text-input:focus,
+.demo-other-input:focus,
+.demo-select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.demo-other-input {
+  margin-top: 6px;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radio-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.radio-label:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.radio-label input[type="radio"] {
+  display: none;
+}
+
+.demo-scale-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Shared Likert button (5-pt demographics + 7-pt questions) */
+.scale-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+  flex-shrink: 0;
+}
+
+.scale-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.scale-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.scale-anchor {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.form-error {
+  color: var(--warn);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+/* Instructions page */
+.instructions-heading {
+  font-size: 26px;
+}
+
+.instructions-body {
+  display: grid;
+  gap: 14px;
+  max-width: 680px;
+}
+
+.instructions-body p {
+  font-size: 15px;
+  color: #343a35;
+  line-height: 1.6;
+}
+
+.instructions-list {
+  margin: 4px 0 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.instructions-list li {
+  font-size: 14px;
+  color: #343a35;
+  line-height: 1.5;
+}
+
+.instructions-preview {
+  max-width: 680px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  display: grid;
+  gap: 14px;
+}
+
+.preview-heading {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-bottom: 2px;
+}
+
+.preview-question-list {
+  display: grid;
+  gap: 12px;
+}
+
+.preview-question {
+  display: grid;
+  gap: 3px;
+}
+
+.preview-q-text {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.preview-scale {
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Per-pair question grid (two columns matching comparison-grid) */
+.pair-questions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+  align-items: start;
+}
+
+.conv-questions-section {
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.conv-questions-header {
+  padding: 10px 14px;
+  background: #fbfbf8;
+  border-bottom: 1px solid var(--line);
+}
+
+.conv-questions-title {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink);
+}
+
+/* Individual question block */
+.rq-block {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rq-block:last-child {
+  border-bottom: none;
+}
+
+.rq-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+/* 7-point Likert scale */
+.likert7-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.l7-anchor {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.3;
+  max-width: 80px;
+  padding-top: 12px;
+}
+
+.l7-anchor--left {
+  text-align: right;
+}
+
+.l7-anchor--right {
+  text-align: left;
+}
+
+.l7-mid-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.l7-mid-label {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+  max-width: 52px;
+}
+
+/* Yes / No buttons */
+.yn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.yn-btn {
+  min-height: 38px;
+  padding: 7px 16px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+}
+
+.yn-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.yn-btn.selected {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Conditional content (shown when Yes is picked) */
+.conditional-wrap {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.rq-textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 72px;
+}
+
+.rq-textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* B2 checkbox group */
+.checkbox-group {
+  display: grid;
+  gap: 6px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1.4;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.checkbox-label--other {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+/* ── End Validation Study styles ────────────────────────────────────────── */
 
 @media (max-width: 780px) {
   .site-header {
