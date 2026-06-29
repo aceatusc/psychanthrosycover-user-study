@@ -4,15 +4,19 @@ Flask backend for the validation study — Phase 1.
 Usage (from user-study/ directory):
     pip install -r scripts/requirements.txt
     node scripts/build-pages.mjs
-    python scripts/study-server.py
+    python scripts/study-server.py [--port 5111]
     open http://localhost:5111/study.html
 
+Options:
+    --port    Port to listen on (default 5111; overrides PORT env var)
+
 Environment variables:
-    PORT      Flask port (default 5111)
+    PORT      Flask port (default 5111, overridden by --port)
     SITE_DIR  Static files directory (default _site, relative to CWD)
     DB_PATH   SQLite database file (default study.db)
 """
 
+import argparse
 import json
 import os
 import sqlite3
@@ -24,7 +28,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-PORT = int(os.environ.get('PORT', 5111))
+_parser = argparse.ArgumentParser()
+_parser.add_argument('--port', type=int, default=int(os.environ.get('PORT', 5111)))
+_args = _parser.parse_args()
+PORT = _args.port
 SITE_DIR = os.path.abspath(os.environ.get('SITE_DIR', '_site'))
 DB_PATH = os.environ.get('DB_PATH', 'study.db')
 

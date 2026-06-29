@@ -33,3 +33,29 @@ node scripts/build-pages.mjs
 ```
 
 Then open `_site/index.html`.
+
+## Validation Study (Phase 1)
+
+**One-time setup**
+
+```sh
+cd user-study
+python -m venv .venv
+.venv/bin/pip install flask flask-cors
+```
+
+**Run**
+
+```sh
+node scripts/build-pages.mjs
+.venv/bin/python scripts/study-server.py
+```
+
+Open <http://localhost:5111/study.html>.
+
+Responses are stored in `user-study/study.db` (SQLite). To inspect:
+
+```sh
+sqlite3 study.db "SELECT * FROM participants;"
+sqlite3 study.db "SELECT * FROM responses;"
+```
