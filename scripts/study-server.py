@@ -14,6 +14,12 @@ Environment variables:
     PORT      Flask port (default 5111, overridden by --port)
     SITE_DIR  Static files directory (default _site, relative to CWD)
     DB_PATH   SQLite database file (default study.db)
+
+Progressive save endpoints:
+    POST /save-demographics  — called after demographics page; creates partial participant row
+    POST /save-pair          — called after each pair; upserts that pair's response rows
+    GET  /progress           — returns answered pair keys + completion status for resume
+    POST /submit             — final submission; marks participant completed (submitted_at set)
 """
 
 import argparse
@@ -37,11 +43,12 @@ DB_PATH = os.environ.get('DB_PATH', 'study.db')
 
 _lock = threading.Lock()
 
+# submitted_at and session_id are nullable — they are set only when the participant finalizes.
 CREATE_PARTICIPANTS = """
 CREATE TABLE IF NOT EXISTS participants (
     participant_id      TEXT PRIMARY KEY,
-    session_id          TEXT NOT NULL,
-    submitted_at        TEXT NOT NULL,
+    session_id          TEXT,
+    submitted_at        TEXT,
     ingested_at         TEXT NOT NULL,
     field               TEXT,
     education           TEXT,
@@ -57,22 +64,24 @@ CREATE TABLE IF NOT EXISTS participants (
 )
 """
 
+# UNIQUE on (participant_id, pair_key, conv_label) enables INSERT OR REPLACE for progressive saves.
 CREATE_RESPONSES = """
 CREATE TABLE IF NOT EXISTS responses (
     id              INTEGER PRIMARY KEY AUTOINCREMENT,
     participant_id  TEXT NOT NULL REFERENCES participants(participant_id),
     pair_key        TEXT NOT NULL,
-    conv_a_file     TEXT NOT NULL,   -- which underlying file ('a'|'b') was shown as "Conversation A"
-    conv_label      TEXT NOT NULL,   -- display label: 'A' or 'B'
-    underlying_file TEXT NOT NULL,   -- actual data file: 'a' or 'b'
-    a1              INTEGER,         -- 1–7 professionalism
-    a2              INTEGER,         -- 1–7 clinical standards alignment
-    b1_flagged      INTEGER,         -- 0 or 1
+    conv_a_file     TEXT NOT NULL,
+    conv_label      TEXT NOT NULL,
+    underlying_file TEXT NOT NULL,
+    a1              INTEGER,
+    a2              INTEGER,
+    b1_flagged      INTEGER,
     b1_text         TEXT,
-    b2              INTEGER,         -- 1–7 confidence (B2)
-    b3_flagged      INTEGER,         -- 0 or 1 (B3)
-    b3_options      TEXT,            -- JSON array of selected option strings
-    b3_other        TEXT
+    b2              INTEGER,
+    b3_flagged      INTEGER,
+    b3_options      TEXT,
+    b3_other        TEXT,
+    UNIQUE(participant_id, pair_key, conv_label)
 )
 """
 
@@ -91,6 +100,139 @@ def init_db():
         conn.commit()
 
 
+def _bool_flag(val):
+    """Convert a JSON boolean/None to 0/1/None for the DB."""
+    if val is True:
+        return 1
+    if val is False:
+        return 0
+    return None
+
+
+def _response_rows(pid, conv_a_file, pair_key, conv_a_ratings, conv_b_ratings):
+    """Build two response rows (one per conversation) from a pair's ratings dicts."""
+    conv_b_file = 'b' if conv_a_file == 'a' else 'a'
+    rows = []
+    for conv_label, underlying, ratings in [
+        ('A', conv_a_file, conv_a_ratings),
+        ('B', conv_b_file, conv_b_ratings),
+    ]:
+        rows.append((
+            pid, pair_key, conv_a_file, conv_label, underlying,
+            ratings.get('a1'), ratings.get('a2'),
+            _bool_flag(ratings.get('b1_flagged')), ratings.get('b1_text', ''),
+            ratings.get('b2'),
+            _bool_flag(ratings.get('b3_flagged')),
+            json.dumps(ratings.get('b3_options', [])),
+            ratings.get('b3_other', ''),
+        ))
+    return rows
+
+
+# ─── Progressive save endpoints ───────────────────────────────────────────────
+
+@app.route('/save-demographics', methods=['POST'])
+def save_demographics():
+    data = request.get_json(silent=True) or {}
+    pid = (data.get('participant_id') or '').strip()
+    sid = (data.get('session_id') or '').strip()
+    d = data.get('demographics') or {}
+    if not pid:
+        return jsonify(ok=False, error='missing participant_id'), 400
+
+    now = datetime.now(timezone.utc).isoformat()
+    with _lock:
+        with get_db() as conn:
+            conn.execute("""
+                INSERT INTO participants
+                    (participant_id, session_id, ingested_at,
+                     field, education, licensed, seeing_clients, years_experience,
+                     orientation, ai_familiarity, ai_appropriateness, age, gender, income)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                ON CONFLICT(participant_id) DO UPDATE SET
+                    session_id            = excluded.session_id,
+                    field                 = excluded.field,
+                    education             = excluded.education,
+                    licensed              = excluded.licensed,
+                    seeing_clients        = excluded.seeing_clients,
+                    years_experience      = excluded.years_experience,
+                    orientation           = excluded.orientation,
+                    ai_familiarity        = excluded.ai_familiarity,
+                    ai_appropriateness    = excluded.ai_appropriateness,
+                    age                   = excluded.age,
+                    gender                = excluded.gender,
+                    income                = excluded.income
+                WHERE participants.submitted_at IS NULL
+            """, (
+                pid, sid, now,
+                d.get('field'), d.get('education'), d.get('licensed'),
+                d.get('seeing_clients'), d.get('years_experience'),
+                d.get('orientation'), d.get('ai_familiarity'),
+                d.get('ai_appropriateness'), d.get('age'),
+                d.get('gender'), d.get('income'),
+            ))
+            conn.commit()
+    return jsonify(ok=True)
+
+
+@app.route('/save-pair', methods=['POST'])
+def save_pair():
+    data = request.get_json(silent=True) or {}
+    pid = (data.get('participant_id') or '').strip()
+    pair_key = (data.get('pair_key') or '').strip()
+    conv_a_file = (data.get('conv_a_file') or '').strip()
+    if not pid or not pair_key or not conv_a_file:
+        return jsonify(ok=False, error='missing fields'), 400
+
+    rows = _response_rows(
+        pid, conv_a_file, pair_key,
+        data.get('conv_a_ratings') or {},
+        data.get('conv_b_ratings') or {},
+    )
+    now = datetime.now(timezone.utc).isoformat()
+    with _lock:
+        with get_db() as conn:
+            # Ensure a placeholder participant row exists (save-demographics may not have been called yet).
+            conn.execute(
+                'INSERT OR IGNORE INTO participants (participant_id, ingested_at) VALUES (?,?)',
+                (pid, now),
+            )
+            conn.executemany(
+                """INSERT OR REPLACE INTO responses
+                   (participant_id, pair_key, conv_a_file, conv_label, underlying_file,
+                    a1, a2, b1_flagged, b1_text, b2, b3_flagged, b3_options, b3_other)
+                   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                rows,
+            )
+            conn.commit()
+    return jsonify(ok=True)
+
+
+@app.route('/progress')
+def progress():
+    pid = request.args.get('participant_id', '').strip()
+    if not pid:
+        return jsonify(ok=False, error='missing participant_id'), 400
+    with get_db() as conn:
+        part = conn.execute(
+            'SELECT submitted_at, field FROM participants WHERE participant_id = ?', (pid,)
+        ).fetchone()
+        if not part:
+            return jsonify(ok=True, completed=False, demographics_saved=False, answered_pair_keys=[])
+        answered = conn.execute(
+            "SELECT DISTINCT pair_key FROM responses WHERE participant_id = ? AND conv_label = 'A'",
+            (pid,),
+        ).fetchall()
+    return jsonify(
+        ok=True,
+        completed=part['submitted_at'] is not None,
+        demographics_saved=part['field'] is not None,
+        answered_pair_keys=[r['pair_key'] for r in answered],
+    )
+
+
+# ─── Final submission ──────────────────────────────────────────────────────────
+
 @app.route('/submit', methods=['POST'])
 def submit():
     data = request.get_json(force=True, silent=True)
@@ -100,64 +242,74 @@ def submit():
     try:
         now = datetime.now(timezone.utc).isoformat()
         pid = data['participant_id']
-        sid = data['session_id']
+        sid = data.get('session_id', '')
         submitted_at = data['submitted_at']
         demo = data.get('demographics') or {}
 
-        participant_row = (
-            pid, sid, submitted_at, now,
-            demo.get('field'), demo.get('education'), demo.get('licensed'),
-            demo.get('seeing_clients'), demo.get('years_experience'),
-            demo.get('orientation'), demo.get('ai_familiarity'),
-            demo.get('ai_appropriateness'), demo.get('age'),
-            demo.get('gender'), demo.get('income'),
-        )
-
         response_rows = []
-        for r in data['responses']:
-            pair_key = r['pair_key']
-            conv_a_file = r['conv_a_file']           # 'a' or 'b'
-            conv_b_file = 'b' if conv_a_file == 'a' else 'a'
-
-            for conv_label, ratings, underlying in [
-                ('A', r['conv_a_ratings'], conv_a_file),
-                ('B', r['conv_b_ratings'], conv_b_file),
-            ]:
-                response_rows.append((
-                    pid, pair_key, conv_a_file, conv_label, underlying,
-                    ratings.get('a1'), ratings.get('a2'),
-                    1 if ratings.get('b1_flagged') else 0, ratings.get('b1_text', ''),
-                    ratings.get('b2'),
-                    1 if ratings.get('b3_flagged') else 0,
-                    json.dumps(ratings.get('b3_options', [])),
-                    ratings.get('b3_other', ''),
-                ))
+        for r in (data.get('responses') or []):
+            response_rows.extend(_response_rows(
+                pid, r['conv_a_file'], r['pair_key'],
+                r.get('conv_a_ratings') or {},
+                r.get('conv_b_ratings') or {},
+            ))
 
     except (KeyError, TypeError) as exc:
         return jsonify(ok=False, error=f'missing or malformed field: {exc}'), 400
 
     with _lock:
         with get_db() as conn:
-            try:
-                conn.execute(
-                    """INSERT INTO participants
-                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                    participant_row,
-                )
-            except sqlite3.IntegrityError:
+            existing = conn.execute(
+                'SELECT submitted_at FROM participants WHERE participant_id = ?', (pid,)
+            ).fetchone()
+            if existing and existing['submitted_at'] is not None:
                 return jsonify(ok=False, error='already_submitted'), 409
-            conn.executemany(
-                """INSERT INTO responses
-                   (participant_id, pair_key, conv_a_file, conv_label, underlying_file,
-                    a1, a2, b1_flagged, b1_text, b2, b3_flagged, b3_options, b3_other)
-                   VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                response_rows,
-            )
+
+            # Upsert participant — COALESCE keeps saved demographics if demo is empty (finalize-only mode).
+            conn.execute("""
+                INSERT INTO participants
+                    (participant_id, session_id, submitted_at, ingested_at,
+                     field, education, licensed, seeing_clients, years_experience,
+                     orientation, ai_familiarity, ai_appropriateness, age, gender, income)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                ON CONFLICT(participant_id) DO UPDATE SET
+                    submitted_at          = excluded.submitted_at,
+                    session_id            = COALESCE(excluded.session_id,         participants.session_id),
+                    field                 = COALESCE(excluded.field,               participants.field),
+                    education             = COALESCE(excluded.education,           participants.education),
+                    licensed              = COALESCE(excluded.licensed,            participants.licensed),
+                    seeing_clients        = COALESCE(excluded.seeing_clients,      participants.seeing_clients),
+                    years_experience      = COALESCE(excluded.years_experience,    participants.years_experience),
+                    orientation           = COALESCE(excluded.orientation,         participants.orientation),
+                    ai_familiarity        = COALESCE(excluded.ai_familiarity,      participants.ai_familiarity),
+                    ai_appropriateness    = COALESCE(excluded.ai_appropriateness,  participants.ai_appropriateness),
+                    age                   = COALESCE(excluded.age,                 participants.age),
+                    gender                = COALESCE(excluded.gender,              participants.gender),
+                    income                = COALESCE(excluded.income,              participants.income)
+            """, (
+                pid, sid, submitted_at, now,
+                demo.get('field'), demo.get('education'), demo.get('licensed'),
+                demo.get('seeing_clients'), demo.get('years_experience'),
+                demo.get('orientation'), demo.get('ai_familiarity'),
+                demo.get('ai_appropriateness'), demo.get('age'),
+                demo.get('gender'), demo.get('income'),
+            ))
+
+            if response_rows:
+                conn.executemany(
+                    """INSERT OR REPLACE INTO responses
+                       (participant_id, pair_key, conv_a_file, conv_label, underlying_file,
+                        a1, a2, b1_flagged, b1_text, b2, b3_flagged, b3_options, b3_other)
+                       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                    response_rows,
+                )
             conn.commit()
 
-    app.logger.info('saved %d response rows for participant %s', len(response_rows), pid)
+    app.logger.info('finalized %s (%d response rows in this submission)', pid, len(response_rows))
     return jsonify(ok=True)
 
+
+# ─── Utility endpoints ────────────────────────────────────────────────────────
 
 @app.route('/check-status')
 def check_status():
@@ -165,18 +317,20 @@ def check_status():
     if not pid:
         return jsonify(ok=False, error='missing participant_id'), 400
     with get_db() as conn:
-        exists = conn.execute(
-            'SELECT 1 FROM participants WHERE participant_id = ?', (pid,)
+        row = conn.execute(
+            'SELECT submitted_at FROM participants WHERE participant_id = ?', (pid,)
         ).fetchone()
-    return jsonify(ok=True, completed=exists is not None)
+    completed = row is not None and row['submitted_at'] is not None
+    return jsonify(ok=True, completed=completed)
 
 
 @app.route('/health')
 def health():
     with get_db() as conn:
-        participants = conn.execute('SELECT COUNT(*) FROM participants').fetchone()[0]
-        responses = conn.execute('SELECT COUNT(*) FROM responses').fetchone()[0]
-    return jsonify(ok=True, participants=participants, response_rows=responses)
+        participants = conn.execute('SELECT COUNT(*) FROM participants WHERE submitted_at IS NOT NULL').fetchone()[0]
+        in_progress  = conn.execute('SELECT COUNT(*) FROM participants WHERE submitted_at IS NULL').fetchone()[0]
+        responses    = conn.execute('SELECT COUNT(*) FROM responses').fetchone()[0]
+    return jsonify(ok=True, participants=participants, in_progress=in_progress, response_rows=responses)
 
 
 @app.route('/', defaults={'filename': 'study.html'})

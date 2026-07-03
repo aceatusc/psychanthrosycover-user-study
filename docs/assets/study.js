@@ -176,21 +176,56 @@
 
   // ─── SCREENS ──────────────────────────────────────────────────────────────
 
-  // Check completion status before showing anything (skipped in demo mode).
-  checkCompletionStatus().then((completed) => {
-    if (completed) renderAlreadyCompleted(); else renderIntro();
+  // Fetch progress before showing anything; routes to the right screen (skipped in demo mode).
+  fetchProgress().then((p) => {
+    if (p.completed) {
+      renderAlreadyCompleted();
+    } else if (p.answeredPairKeys.length === pairs.length) {
+      // All pairs answered in a prior session but not yet finalized.
+      renderPendingFinalize();
+    } else if (p.answeredPairKeys.length > 0) {
+      const nextIdx = pairs.findIndex((pair) => !p.answeredPairKeys.includes(pair.key));
+      renderPair(nextIdx >= 0 ? nextIdx : 0);
+    } else if (p.demographicsSaved) {
+      renderInstructions();
+    } else {
+      renderIntro();
+    }
   });
 
-  async function checkCompletionStatus() {
-    if (!SUBMIT_URL) return false;
+  async function fetchProgress() {
+    const empty = { completed: false, demographicsSaved: false, answeredPairKeys: [] };
+    if (!SUBMIT_URL) return empty;
     try {
-      const res = await fetch(`/check-status?participant_id=${encodeURIComponent(participantId)}`);
-      if (!res.ok) return false;
-      const data = await res.json();
-      return data.completed === true;
+      const res = await fetch(`/progress?participant_id=${encodeURIComponent(participantId)}`);
+      if (!res.ok) return empty;
+      const d = await res.json();
+      return { completed: d.completed, demographicsSaved: d.demographics_saved, answeredPairKeys: d.answered_pair_keys || [] };
     } catch {
-      return false;
+      return empty;
     }
+  }
+
+  async function saveDemographics(demos) {
+    if (!SUBMIT_URL) return;
+    try {
+      await fetch('/save-demographics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ participant_id: participantId, session_id: sessionId, demographics: demos }),
+      });
+    } catch { /* non-critical — final submit is the fallback */ }
+  }
+
+  async function savePair(pairKey, convAFile, convARatings, convBRatings) {
+    if (!SUBMIT_URL) return;
+    try {
+      await fetch('/save-pair', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ participant_id: participantId, pair_key: pairKey, conv_a_file: convAFile, conv_a_ratings: convARatings, conv_b_ratings: convBRatings }),
+      });
+    } catch { /* non-critical */ }
   }
 
   // ── Intro ────────────────────────────────────────────────────────────────
@@ -207,13 +242,23 @@
       'Please note this ID — you may need it if you contact the research team.'));
     sec.appendChild(pidBox);
 
-    sec.appendChild(el('p', 'refresh-warning',
-      'Do not refresh this page — if you do, the survey will start over.'));
+    sec.appendChild(el('p', 'pid-note pid-note--warning',
+      'Your progress is saved after each conversation pair, so you can safely close and return later.'));
 
     const btn = el('button', 'btn-primary', 'Start →');
     btn.addEventListener('click', renderDemographics);
     sec.appendChild(btn);
 
+    app.replaceChildren(sec);
+  }
+
+  function renderPendingFinalize() {
+    const sec = el('section', 'study-hero study-hero--centered');
+    sec.appendChild(el('h2', '', 'Almost done'));
+    sec.appendChild(el('p', 'lede', "You've answered all pairs in a previous session. Click below to finalize your submission."));
+    const btn = el('button', 'btn-primary', 'Submit responses →');
+    btn.addEventListener('click', submitResponses);
+    sec.appendChild(btn);
     app.replaceChildren(sec);
   }
 
@@ -270,6 +315,7 @@
       }
       demographics = result;
       errEl.hidden = true;
+      saveDemographics(result);
       renderInstructions();
     });
     sec.appendChild(btn);
@@ -459,8 +505,10 @@
     qGrid.append(qElA, qElB);
     frag.appendChild(qGrid);
 
-    nextBtn.addEventListener('click', () => {
-      responses[index] = { pairKey: pair.key, convAFile, convA: getA(), convB: getB() };
+    nextBtn.addEventListener('click', async () => {
+      const convA = getA(), convB = getB();
+      responses[index] = { pairKey: pair.key, convAFile, convA, convB };
+      await savePair(pair.key, convAFile, convA, convB);
       if (index < pairs.length - 1) { renderPair(index + 1); } else { submitResponses(); }
     });
 
@@ -675,7 +723,7 @@
       session_id: sessionId,
       submitted_at: new Date().toISOString(),
       demographics,
-      responses: responses.map((r) => ({
+      responses: responses.filter(Boolean).map((r) => ({
         pair_key: r.pairKey,
         conv_a_file: r.convAFile,
         conv_a_ratings: r.convA,
