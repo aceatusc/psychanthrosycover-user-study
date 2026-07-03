@@ -1070,6 +1070,8 @@ select {
 }
 
 /* Conditional content (shown when Yes is picked) */
+[hidden] { display: none !important; }
+
 .conditional-wrap {
   display: grid;
   gap: 8px;
