@@ -78,7 +78,7 @@ for (const category of siteData.categories) {
     if (!a || !b) continue;
     studyPairs.push({
       key: `${category.slug}/${pair.id}`,
-      label: `${category.name} · Pair ${pair.id}`,
+      label: `${category.name}`,
       a: { turns: a.turns },
       b: { turns: b.turns },
     });

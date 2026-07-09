@@ -83,7 +83,7 @@
       return;
     }
 
-    document.title = `${category.name} · Pair ${pair.id}`;
+    document.title = `${category.name}`;
 
     const breadcrumb = el("div", "breadcrumb");
     const home = el("a", "", "Pairs");
@@ -93,7 +93,7 @@
 
     target.appendChild(pageTitle(
       "Pair Comparison",
-      `${category.name} · Pair ${pair.id}`,
+      `${category.name}`,
       "Compare any two files in this pair, then scan all professional and unprofessional editions.",
       [
         `${pair.files.length} files`,

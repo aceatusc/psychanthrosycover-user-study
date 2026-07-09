@@ -56,11 +56,11 @@ CREATE TABLE IF NOT EXISTS participants (
     seeing_clients      TEXT,
     years_experience    TEXT,
     orientation         TEXT,
-    ai_familiarity      TEXT,
-    ai_appropriateness  INTEGER,
-    age                 INTEGER,
-    gender              TEXT,
-    income              TEXT
+    ai_familiarity           TEXT,
+    ai_appropriateness       TEXT,
+    ai_appropriateness_text  TEXT,
+    age                      INTEGER,
+    gender                   TEXT
 )
 """
 
@@ -147,29 +147,30 @@ def save_demographics():
                 INSERT INTO participants
                     (participant_id, session_id, ingested_at,
                      field, education, licensed, seeing_clients, years_experience,
-                     orientation, ai_familiarity, ai_appropriateness, age, gender, income)
+                     orientation, ai_familiarity, ai_appropriateness, ai_appropriateness_text,
+                     age, gender)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(participant_id) DO UPDATE SET
-                    session_id            = excluded.session_id,
-                    field                 = excluded.field,
-                    education             = excluded.education,
-                    licensed              = excluded.licensed,
-                    seeing_clients        = excluded.seeing_clients,
-                    years_experience      = excluded.years_experience,
-                    orientation           = excluded.orientation,
-                    ai_familiarity        = excluded.ai_familiarity,
-                    ai_appropriateness    = excluded.ai_appropriateness,
-                    age                   = excluded.age,
-                    gender                = excluded.gender,
-                    income                = excluded.income
+                    session_id               = excluded.session_id,
+                    field                    = excluded.field,
+                    education                = excluded.education,
+                    licensed                 = excluded.licensed,
+                    seeing_clients           = excluded.seeing_clients,
+                    years_experience         = excluded.years_experience,
+                    orientation              = excluded.orientation,
+                    ai_familiarity           = excluded.ai_familiarity,
+                    ai_appropriateness       = excluded.ai_appropriateness,
+                    ai_appropriateness_text  = excluded.ai_appropriateness_text,
+                    age                      = excluded.age,
+                    gender                   = excluded.gender
                 WHERE participants.submitted_at IS NULL
             """, (
                 pid, sid, now,
                 d.get('field'), d.get('education'), d.get('licensed'),
                 d.get('seeing_clients'), d.get('years_experience'),
                 d.get('orientation'), d.get('ai_familiarity'),
-                d.get('ai_appropriateness'), d.get('age'),
-                d.get('gender'), d.get('income'),
+                d.get('ai_appropriateness'), d.get('ai_appropriateness_text'),
+                d.get('age'), d.get('gender'),
             ))
             conn.commit()
     return jsonify(ok=True)
@@ -270,29 +271,30 @@ def submit():
                 INSERT INTO participants
                     (participant_id, session_id, submitted_at, ingested_at,
                      field, education, licensed, seeing_clients, years_experience,
-                     orientation, ai_familiarity, ai_appropriateness, age, gender, income)
+                     orientation, ai_familiarity, ai_appropriateness, ai_appropriateness_text,
+                     age, gender)
                 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(participant_id) DO UPDATE SET
-                    submitted_at          = excluded.submitted_at,
-                    session_id            = COALESCE(excluded.session_id,         participants.session_id),
-                    field                 = COALESCE(excluded.field,               participants.field),
-                    education             = COALESCE(excluded.education,           participants.education),
-                    licensed              = COALESCE(excluded.licensed,            participants.licensed),
-                    seeing_clients        = COALESCE(excluded.seeing_clients,      participants.seeing_clients),
-                    years_experience      = COALESCE(excluded.years_experience,    participants.years_experience),
-                    orientation           = COALESCE(excluded.orientation,         participants.orientation),
-                    ai_familiarity        = COALESCE(excluded.ai_familiarity,      participants.ai_familiarity),
-                    ai_appropriateness    = COALESCE(excluded.ai_appropriateness,  participants.ai_appropriateness),
-                    age                   = COALESCE(excluded.age,                 participants.age),
-                    gender                = COALESCE(excluded.gender,              participants.gender),
-                    income                = COALESCE(excluded.income,              participants.income)
+                    submitted_at             = excluded.submitted_at,
+                    session_id               = COALESCE(excluded.session_id,              participants.session_id),
+                    field                    = COALESCE(excluded.field,                   participants.field),
+                    education                = COALESCE(excluded.education,               participants.education),
+                    licensed                 = COALESCE(excluded.licensed,                participants.licensed),
+                    seeing_clients           = COALESCE(excluded.seeing_clients,          participants.seeing_clients),
+                    years_experience         = COALESCE(excluded.years_experience,        participants.years_experience),
+                    orientation              = COALESCE(excluded.orientation,             participants.orientation),
+                    ai_familiarity           = COALESCE(excluded.ai_familiarity,          participants.ai_familiarity),
+                    ai_appropriateness       = COALESCE(excluded.ai_appropriateness,      participants.ai_appropriateness),
+                    ai_appropriateness_text  = COALESCE(excluded.ai_appropriateness_text, participants.ai_appropriateness_text),
+                    age                      = COALESCE(excluded.age,                     participants.age),
+                    gender                   = COALESCE(excluded.gender,                  participants.gender)
             """, (
                 pid, sid, submitted_at, now,
                 demo.get('field'), demo.get('education'), demo.get('licensed'),
                 demo.get('seeing_clients'), demo.get('years_experience'),
                 demo.get('orientation'), demo.get('ai_familiarity'),
-                demo.get('ai_appropriateness'), demo.get('age'),
-                demo.get('gender'), demo.get('income'),
+                demo.get('ai_appropriateness'), demo.get('ai_appropriateness_text'),
+                demo.get('age'), demo.get('gender'),
             ))
 
             if response_rows:
