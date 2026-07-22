@@ -1,8 +1,13 @@
 (function () {
   'use strict';
 
-  // Set to '/submit' when running via study-server.py, or '' for console-only demo mode.
-  const SUBMIT_URL = '/submit';
+  // App base path — the directory this page is served from. Keeps the API calls
+  // working both at the root (localhost) and behind a proxy prefix (/psych-validation/).
+  const BASE = location.pathname.replace(/[^/]*$/, '');
+  const api = (p) => BASE + p;
+
+  // Set to 'submit' when running via study-server.py, or '' for console-only demo mode.
+  const SUBMIT_URL = api('submit');
 
   const rawPairs = window.STUDY_PAIRS || [];
   const app = document.getElementById('app');
@@ -183,7 +188,7 @@
     const empty = { completed: false, demographicsSaved: false, answeredPairKeys: [] };
     if (!SUBMIT_URL) return empty;
     try {
-      const res = await fetch(`/progress?participant_id=${encodeURIComponent(participantId)}`);
+      const res = await fetch(api(`progress?participant_id=${encodeURIComponent(participantId)}`));
       if (!res.ok) return empty;
       const d = await res.json();
       return { completed: d.completed, demographicsSaved: d.demographics_saved, answeredPairKeys: d.answered_pair_keys || [] };
@@ -195,7 +200,7 @@
   async function saveDemographics(demos) {
     if (!SUBMIT_URL) return;
     try {
-      await fetch('/save-demographics', {
+      await fetch(api('save-demographics'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ participant_id: participantId, session_id: sessionId, demographics: demos }),
@@ -206,7 +211,7 @@
   async function savePair(pairKey, convAFile, convARatings, convBRatings) {
     if (!SUBMIT_URL) return;
     try {
-      await fetch('/save-pair', {
+      await fetch(api('save-pair'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ participant_id: participantId, pair_key: pairKey, conv_a_file: convAFile, conv_a_ratings: convARatings, conv_b_ratings: convBRatings }),
