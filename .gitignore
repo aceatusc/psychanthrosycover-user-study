@@ -224,3 +224,4 @@ docs/assets/site-data.js
 .DS_Store
 study.db
 analysis/
+collected-samples/
