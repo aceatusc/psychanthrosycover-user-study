@@ -18,11 +18,13 @@ Usage (from user-study/):
 Filtering:
     Test/junk participants are dropped. By default a participant is included
     only if they finished the study (``submitted_at`` set) and their free-text
-    ``field`` is not in the exclude list. Seed data from local testing used
-    "Sadra" and "football" as the field, so those are excluded by default.
+    ``field`` does not contain any exclude token. Seed/test data used fields like
+    "test-sadra" and "football", so "sadra", "football", and "test" are excluded
+    by default (matched as case-insensitive substrings).
 
-        --exclude-field NAME     drop participants whose field == NAME (repeatable,
-                                 case-insensitive; default: Sadra, football)
+        --exclude-field NAME     drop participants whose field contains NAME
+                                 (repeatable, case-insensitive substring match;
+                                 default: sadra, football, test)
         --include-incomplete     also include participants who never submitted
         --keep-all-fields        do not apply the field-based exclude list
 
@@ -48,7 +50,7 @@ LIKERT = {
     "a2": "Alignment with clinical/ethical standards",
 }
 
-DEFAULT_EXCLUDE_FIELDS = ["sadra", "football"]
+DEFAULT_EXCLUDE_FIELDS = ["sadra", "football", "test"]
 
 
 # ─── Loading & filtering ──────────────────────────────────────────────────────
@@ -66,7 +68,9 @@ def load(db_path):
 
 def valid_participant_ids(participants, exclude_fields, require_submitted, apply_field_filter):
     """Return (kept_ids, dropped) where dropped is a list of (pid, reason)."""
-    excluded = {f.strip().lower() for f in exclude_fields}
+    # Substring match (case-insensitive) so junk like "test-sadra" is caught even
+    # though it is not an exact match for a token.
+    excluded = {f.strip().lower() for f in exclude_fields if f.strip()}
     kept, dropped = set(), []
     for p in participants:
         pid = p["participant_id"]
@@ -74,7 +78,8 @@ def valid_participant_ids(participants, exclude_fields, require_submitted, apply
         if require_submitted and not p.get("submitted_at"):
             dropped.append((pid, f"incomplete (field={field or '—'!r})"))
             continue
-        if apply_field_filter and field.lower() in excluded:
+        field_lc = field.lower()
+        if apply_field_filter and any(tok in field_lc for tok in excluded):
             dropped.append((pid, f"excluded field={field!r}"))
             continue
         kept.add(pid)
