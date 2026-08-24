@@ -35,6 +35,34 @@
   let demographics = null;
   const responses = [];
 
+  // ─── PROLIFIC INTEGRATION ─────────────────────────────────────────────────
+  // Prolific appends PROLIFIC_PID / STUDY_ID / SESSION_ID to the entry URL. They
+  // are captured on first visit and cached in a cookie so a resumed session (which
+  // lacks the query string) still redirects to the completion URL at the end.
+
+  const PROLIFIC_COMPLETION_CODE = 'C9UC4EFF';
+  const PROLIFIC_COMPLETION_URL = 'https://app.prolific.com/submissions/complete?cc=' + PROLIFIC_COMPLETION_CODE;
+
+  function getProlific() {
+    const q = new URLSearchParams(location.search);
+    const pid = q.get('PROLIFIC_PID');
+    const studyId = q.get('STUDY_ID');
+    const sess = q.get('SESSION_ID');
+    if (pid || studyId || sess) {
+      const p = { prolific_pid: pid || null, study_id: studyId || null, session_id: sess || null };
+      try {
+        document.cookie = `study_prolific=${encodeURIComponent(JSON.stringify(p))}; max-age=31536000; SameSite=Strict; Path=/`;
+      } catch { /* cookie best-effort */ }
+      return p;
+    }
+    const m = document.cookie.match(/(?:^|;\s*)study_prolific=([^;]+)/);
+    if (m) { try { return JSON.parse(decodeURIComponent(m[1])); } catch { /* ignore */ } }
+    return null;
+  }
+
+  // null when the participant did not arrive via Prolific.
+  const prolific = getProlific();
+
   // ─── SEEDED LEFT/RIGHT ASSIGNMENT ─────────────────────────────────────────
 
   function hashStr(s) {
@@ -203,7 +231,7 @@
       await fetch(api('save-demographics'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ participant_id: participantId, session_id: sessionId, demographics: demos }),
+        body: JSON.stringify({ participant_id: participantId, session_id: sessionId, demographics: demos, prolific }),
       });
     } catch { /* non-critical — final submit is the fallback */ }
   }
@@ -716,6 +744,7 @@
       participant_id: participantId,
       session_id: sessionId,
       submitted_at: new Date().toISOString(),
+      prolific,
       demographics,
       responses: responses.filter(Boolean).map((r) => ({
         pair_key: r.pairKey,
@@ -755,10 +784,37 @@
   }
 
   function renderDone() {
+    // Prolific participants are sent back to Prolific to register completion.
+    if (prolific) {
+      const sec = el('section', 'study-hero study-hero--centered');
+      sec.appendChild(el('div', 'eyebrow', 'Complete'));
+      sec.appendChild(el('h1', '', 'Thank you!'));
+      sec.appendChild(el('p', 'lede', 'Your responses have been recorded. Redirecting you back to Prolific…'));
+      const link = el('a', 'btn-primary', 'Return to Prolific →');
+      link.href = PROLIFIC_COMPLETION_URL;
+      sec.appendChild(link);
+      sec.appendChild(el('p', 'pid-note',
+        `If you are not redirected automatically, use completion code ${PROLIFIC_COMPLETION_CODE} on Prolific.`));
+      app.replaceChildren(sec);
+      window.scrollTo(0, 0);
+      window.location.href = PROLIFIC_COMPLETION_URL;
+      return;
+    }
+
     const sec = el('section', 'study-hero study-hero--centered');
     sec.appendChild(el('div', 'eyebrow', 'Complete'));
     sec.appendChild(el('h1', '', 'Thank you!'));
     sec.appendChild(el('p', 'lede', 'Your responses have been recorded. You may now close this tab.'));
+
+    const codeBox = el('div', 'pid-box');
+    const codeMeta = el('div', 'pid-meta');
+    codeMeta.appendChild(el('span', 'pid-label', 'Completion code'));
+    codeMeta.appendChild(el('span', 'pid-value', PROLIFIC_COMPLETION_CODE));
+    codeBox.appendChild(codeMeta);
+    codeBox.appendChild(el('p', 'pid-note',
+      'If you are participating through Prolific, enter this completion code to register your submission.'));
+    sec.appendChild(codeBox);
+
     app.replaceChildren(sec);
     window.scrollTo(0, 0);
   }

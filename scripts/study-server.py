@@ -60,9 +60,19 @@ CREATE TABLE IF NOT EXISTS participants (
     ai_appropriateness       TEXT,
     ai_appropriateness_text  TEXT,
     age                      INTEGER,
-    gender                   TEXT
+    gender                   TEXT,
+    prolific_pid             TEXT,
+    prolific_study_id        TEXT,
+    prolific_session_id      TEXT
 )
 """
+
+# Prolific columns added after the initial schema shipped; migrate existing DBs.
+PARTICIPANT_MIGRATIONS = [
+    ('prolific_pid', 'TEXT'),
+    ('prolific_study_id', 'TEXT'),
+    ('prolific_session_id', 'TEXT'),
+]
 
 # UNIQUE on (participant_id, pair_key, conv_label) enables INSERT OR REPLACE for progressive saves.
 CREATE_RESPONSES = """
@@ -97,6 +107,10 @@ def init_db():
     with get_db() as conn:
         conn.execute(CREATE_PARTICIPANTS)
         conn.execute(CREATE_RESPONSES)
+        existing = {row['name'] for row in conn.execute('PRAGMA table_info(participants)')}
+        for col, col_type in PARTICIPANT_MIGRATIONS:
+            if col not in existing:
+                conn.execute(f'ALTER TABLE participants ADD COLUMN {col} {col_type}')
         conn.commit()
 
 
@@ -137,6 +151,7 @@ def save_demographics():
     pid = (data.get('participant_id') or '').strip()
     sid = (data.get('session_id') or '').strip()
     d = data.get('demographics') or {}
+    prolific = data.get('prolific') or {}
     if not pid:
         return jsonify(ok=False, error='missing participant_id'), 400
 
@@ -148,8 +163,9 @@ def save_demographics():
                     (participant_id, session_id, ingested_at,
                      field, education, licensed, seeing_clients, years_experience,
                      orientation, ai_familiarity, ai_appropriateness, ai_appropriateness_text,
-                     age, gender)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                     age, gender,
+                     prolific_pid, prolific_study_id, prolific_session_id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(participant_id) DO UPDATE SET
                     session_id               = excluded.session_id,
                     field                    = excluded.field,
@@ -162,7 +178,10 @@ def save_demographics():
                     ai_appropriateness       = excluded.ai_appropriateness,
                     ai_appropriateness_text  = excluded.ai_appropriateness_text,
                     age                      = excluded.age,
-                    gender                   = excluded.gender
+                    gender                   = excluded.gender,
+                    prolific_pid             = COALESCE(excluded.prolific_pid,        participants.prolific_pid),
+                    prolific_study_id        = COALESCE(excluded.prolific_study_id,   participants.prolific_study_id),
+                    prolific_session_id      = COALESCE(excluded.prolific_session_id, participants.prolific_session_id)
                 WHERE participants.submitted_at IS NULL
             """, (
                 pid, sid, now,
@@ -171,6 +190,7 @@ def save_demographics():
                 d.get('orientation'), d.get('ai_familiarity'),
                 d.get('ai_appropriateness'), d.get('ai_appropriateness_text'),
                 d.get('age'), d.get('gender'),
+                prolific.get('prolific_pid'), prolific.get('study_id'), prolific.get('session_id'),
             ))
             conn.commit()
     return jsonify(ok=True)
@@ -246,6 +266,7 @@ def submit():
         sid = data.get('session_id', '')
         submitted_at = data['submitted_at']
         demo = data.get('demographics') or {}
+        prolific = data.get('prolific') or {}
 
         response_rows = []
         for r in (data.get('responses') or []):
@@ -272,8 +293,9 @@ def submit():
                     (participant_id, session_id, submitted_at, ingested_at,
                      field, education, licensed, seeing_clients, years_experience,
                      orientation, ai_familiarity, ai_appropriateness, ai_appropriateness_text,
-                     age, gender)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                     age, gender,
+                     prolific_pid, prolific_study_id, prolific_session_id)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                 ON CONFLICT(participant_id) DO UPDATE SET
                     submitted_at             = excluded.submitted_at,
                     session_id               = COALESCE(excluded.session_id,              participants.session_id),
@@ -287,7 +309,10 @@ def submit():
                     ai_appropriateness       = COALESCE(excluded.ai_appropriateness,      participants.ai_appropriateness),
                     ai_appropriateness_text  = COALESCE(excluded.ai_appropriateness_text, participants.ai_appropriateness_text),
                     age                      = COALESCE(excluded.age,                     participants.age),
-                    gender                   = COALESCE(excluded.gender,                  participants.gender)
+                    gender                   = COALESCE(excluded.gender,                  participants.gender),
+                    prolific_pid             = COALESCE(excluded.prolific_pid,        participants.prolific_pid),
+                    prolific_study_id        = COALESCE(excluded.prolific_study_id,   participants.prolific_study_id),
+                    prolific_session_id      = COALESCE(excluded.prolific_session_id, participants.prolific_session_id)
             """, (
                 pid, sid, submitted_at, now,
                 demo.get('field'), demo.get('education'), demo.get('licensed'),
@@ -295,6 +320,7 @@ def submit():
                 demo.get('orientation'), demo.get('ai_familiarity'),
                 demo.get('ai_appropriateness'), demo.get('ai_appropriateness_text'),
                 demo.get('age'), demo.get('gender'),
+                prolific.get('prolific_pid'), prolific.get('study_id'), prolific.get('session_id'),
             ))
 
             if response_rows:
