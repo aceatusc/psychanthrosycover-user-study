@@ -1020,6 +1020,12 @@ select {
   border-bottom: none;
 }
 
+.rq-block--missing {
+  border-left: 3px solid var(--warn);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--warn) 7%, transparent);
+}
+
 .rq-label {
   font-size: 13px;
   font-weight: 700;
