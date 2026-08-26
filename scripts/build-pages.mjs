@@ -1,7 +1,9 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = process.cwd();
+const scriptDir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(scriptDir, "..");
 const sourceDir = path.join(root, "docs");
 const outputDir = path.join(root, "_site");
 const dataDir = path.join(root, "data");

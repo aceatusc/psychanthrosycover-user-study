@@ -1,7 +1,7 @@
 """
 Flask backend for the validation study — Phase 1.
 
-Usage (from user-study/ directory):
+Usage (from repository root):
     pip install -r scripts/requirements.txt
     node scripts/build-pages.mjs
     python scripts/study-server.py [--port 5111]
@@ -12,8 +12,8 @@ Options:
 
 Environment variables:
     PORT      Flask port (default 5111, overridden by --port)
-    SITE_DIR  Static files directory (default _site, relative to CWD)
-    DB_PATH   SQLite database file (default study.db)
+    SITE_DIR  Static files directory (default _site)
+    DB_PATH   SQLite database file (default validation-study/study.db)
 
 Progressive save endpoints:
     POST /save-demographics  — called after demographics page; creates partial participant row
@@ -28,8 +28,12 @@ import os
 import sqlite3
 import threading
 from datetime import datetime, timezone
+from pathlib import Path
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+VALIDATION_STUDY_DIR = REPO_ROOT / 'validation-study'
 
 app = Flask(__name__)
 CORS(app)
@@ -38,8 +42,8 @@ _parser = argparse.ArgumentParser()
 _parser.add_argument('--port', type=int, default=int(os.environ.get('PORT', 5111)))
 _args = _parser.parse_args()
 PORT = _args.port
-SITE_DIR = os.path.abspath(os.environ.get('SITE_DIR', '_site'))
-DB_PATH = os.environ.get('DB_PATH', 'study.db')
+SITE_DIR = os.path.abspath(os.environ.get('SITE_DIR', REPO_ROOT / '_site'))
+DB_PATH = os.environ.get('DB_PATH', VALIDATION_STUDY_DIR / 'study.db')
 
 _lock = threading.Lock()
 

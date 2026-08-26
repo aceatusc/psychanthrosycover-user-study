@@ -10,10 +10,10 @@ as problematic more often?
 The pipeline is idempotent and incremental — run it again as more responses
 land and it recomputes from whatever is currently in the DB.
 
-Usage (from user-study/):
-    .venv/bin/python scripts/analyze.py                        # print report to stdout
-    .venv/bin/python scripts/analyze.py --db study.server.db
-    .venv/bin/python scripts/analyze.py --report out/report.md --csv out/responses_long.csv
+Usage (from repository root):
+    .venv/bin/python scripts/analyze.py
+    .venv/bin/python scripts/analyze.py --db validation-study/collected-samples/study-prolific.server.db
+    .venv/bin/python scripts/analyze.py --report validation-study/analysis/report.md --csv validation-study/analysis/responses_long.csv
 
 Filtering:
     Test/junk participants are dropped. By default a participant is included
@@ -50,6 +50,9 @@ LIKERT = {
     "a2": "Alignment with clinical/ethical standards",
 }
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+VALIDATION_STUDY_DIR = os.path.join(REPO_ROOT, "validation-study")
+DEFAULT_DB = os.path.join(VALIDATION_STUDY_DIR, "study.db")
 DEFAULT_EXCLUDE_FIELDS = ["sadra", "football", "test"]
 
 
@@ -369,7 +372,7 @@ def write_csv(rows, path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--db", default="study.server.db", help="SQLite DB (default: study.server.db)")
+    ap.add_argument("--db", default=DEFAULT_DB, help=f"SQLite DB (default: {DEFAULT_DB})")
     ap.add_argument("--exclude-field", action="append", default=None,
                     help="drop participants whose field equals this (repeatable, case-insensitive)")
     ap.add_argument("--keep-all-fields", action="store_true",

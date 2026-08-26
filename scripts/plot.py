@@ -7,9 +7,9 @@ standalone SVG (vector, paper-ready, opens in any browser, converts to PDF/PNG).
 Pure stdlib — reuses the loading/stats functions in ``analyze.py`` so it stays in
 sync as more responses arrive.
 
-Usage (from user-study/):
-    .venv/bin/python scripts/plot.py                       # writes analysis/comparison.svg
-    .venv/bin/python scripts/plot.py --db study.server.db --out figure.svg
+Usage (from repository root):
+    .venv/bin/python scripts/plot.py
+    .venv/bin/python scripts/plot.py --db validation-study/collected-samples/study-prolific.server.db --out-dir validation-study/analysis
     .venv/bin/python scripts/plot.py --include-incomplete --keep-all-fields
 
 Filtering flags mirror analyze.py (same test-participant exclusion by default).
@@ -273,9 +273,10 @@ def build_diff(rows, measures, title, subtitle):
     for d in range(d_min, d_max + 1):
         gx = dx(d)
         is0 = d == 0
+        dash_attr = 'stroke-dasharray="4 3"' if is0 else ''
         a(f'<line x1="{gx:.1f}" y1="{plot_top:.1f}" x2="{gx:.1f}" y2="{plot_bot:.1f}" '
           f'stroke="{INK_SECONDARY if is0 else GRID}" stroke-width="{1.5 if is0 else 1}" '
-          f'{"stroke-dasharray=\"4 3\"" if is0 else ""}/>')
+          f'{dash_attr}/>')
         a(f'<text x="{gx:.1f}" y="{plot_bot + 20:.1f}" font-size="11" text-anchor="middle" '
           f'fill="{MUTED}">{d:+d}</text>')
     a(f'<text x="{(ml + W - mr) / 2:.1f}" y="{plot_bot + 44:.1f}" font-size="12" text-anchor="middle" '
@@ -317,8 +318,8 @@ def build_diff(rows, measures, title, subtitle):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--db", default="study.server.db")
-    ap.add_argument("--out-dir", default="analysis", help="directory for the SVG figures")
+    ap.add_argument("--db", default=A.DEFAULT_DB)
+    ap.add_argument("--out-dir", default=os.path.join(A.VALIDATION_STUDY_DIR, "analysis"), help="directory for the SVG figures")
     ap.add_argument("--exclude-field", action="append", default=None)
     ap.add_argument("--keep-all-fields", action="store_true")
     ap.add_argument("--include-incomplete", action="store_true")
