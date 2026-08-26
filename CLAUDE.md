@@ -10,10 +10,14 @@ Each dimension has independent high/low versions of the therapist responses whil
 
 ```
 data/
-  <category>/          # 7 mental health use-case categories
+  <category>/          # shared 7 mental health use-case categories
     <1|2>/
       a.json           # one conversation (professional or unprofessional condition)
       b.json           # paired conversation (same user turns, different therapist style)
+validation-study/
+  analysis/            # Phase 1 generated analysis outputs
+  collected-samples/   # Phase 1 collected response databases/backups
+background.md          # literature review and category rationale
 annotation-instructions/
   sychophancy/
     Guideline.md       # canonical annotation rules for sycophancy (source of truth)
@@ -21,7 +25,6 @@ annotation-instructions/
   anthropomorphism/
     Guideline.md       # canonical annotation rules for anthropomorphism (source of truth)
     Operationalization.md
-background.md          # literature review and category rationale
 ```
 
 ## Data format
