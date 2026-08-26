@@ -221,7 +221,9 @@ __marimo__/
 
 _site/
 docs/assets/site-data.js
+docs/assets/study-data.js
 .DS_Store
-study.db
-analysis/
-collected-samples/
+study.db*
+validation-study/study.db*
+validation-study/analysis/
+validation-study/collected-samples/
