@@ -73,6 +73,14 @@ await writeFile(
 );
 
 const studyPairs = [];
+const internalStudyPairs = [];
+const changeSpecs = [
+  { suffix: "hs", change_type: "sycophancy", direction: "increased" },
+  { suffix: "ls", change_type: "sycophancy", direction: "decreased" },
+  { suffix: "ha", change_type: "anthropomorphism", direction: "increased" },
+  { suffix: "la", change_type: "anthropomorphism", direction: "decreased" },
+];
+
 for (const category of siteData.categories) {
   for (const pair of category.pairs) {
     const a = pair.files.find((f) => f.stem === "a");
@@ -84,6 +92,33 @@ for (const category of siteData.categories) {
       a: { turns: a.turns },
       b: { turns: b.turns },
     });
+
+    for (const anchorStem of ["a", "b"]) {
+      const anchor = pair.files.find((f) => f.stem === anchorStem);
+      if (!anchor) continue;
+      for (const spec of changeSpecs) {
+        const changedStem = `${anchorStem}-${spec.suffix}`;
+        const changed = pair.files.find((f) => f.stem === changedStem);
+        if (!changed) continue;
+        internalStudyPairs.push({
+          key: `${category.slug}/${pair.id}/${changedStem}`,
+          category: category.slug,
+          label: category.name,
+          change_type: spec.change_type,
+          direction: spec.direction,
+          anchor: {
+            file: `${anchorStem}.json`,
+            condition: anchor.condition ?? "",
+            turns: anchor.turns,
+          },
+          changed: {
+            file: `${changedStem}.json`,
+            condition: changed.condition ?? "",
+            turns: changed.turns,
+          },
+        });
+      }
+    }
   }
 }
 
@@ -93,10 +128,16 @@ await writeFile(
   "utf8",
 );
 
+await writeFile(
+  path.join(outputDir, "assets", "internal-study-data.js"),
+  `window.INTERNAL_STUDY_PAIRS = ${JSON.stringify(internalStudyPairs, null, 2)};\n`,
+  "utf8",
+);
+
 await writeFile(path.join(outputDir, ".nojekyll"), "", "utf8");
 
 console.log(
-  `Built ${outputDir} with ${siteData.categories.length} categories, ${countFiles(siteData)} JSON records, and ${studyPairs.length} study pairs.`,
+  `Built ${outputDir} with ${siteData.categories.length} categories, ${countFiles(siteData)} JSON records, ${studyPairs.length} study pairs, and ${internalStudyPairs.length} internal validation comparisons.`,
 );
 
 async function sortedDirectories(directory) {
