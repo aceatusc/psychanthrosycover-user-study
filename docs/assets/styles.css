@@ -1041,6 +1041,20 @@ select {
   flex-wrap: wrap;
 }
 
+.empathy-validation-rating {
+  justify-items: center;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.empathy-validation-rating .likert7-row {
+  justify-content: center;
+}
+
+.empathy-validation-rating .rq-label {
+  text-align: center;
+}
+
 .l7-anchor {
   font-size: 11px;
   color: var(--muted);

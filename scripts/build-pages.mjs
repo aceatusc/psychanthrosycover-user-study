@@ -73,6 +73,7 @@ await writeFile(
 );
 
 const studyPairs = [];
+const empathyValidationPairs = [];
 const internalStudyPairs = [];
 const changeSpecs = [
   { suffix: "hs", change_type: "sycophancy", direction: "increased" },
@@ -86,12 +87,15 @@ for (const category of siteData.categories) {
     const a = pair.files.find((f) => f.stem === "a");
     const b = pair.files.find((f) => f.stem === "b");
     if (!a || !b) continue;
-    studyPairs.push({
+    const blindedPair = {
       key: `${category.slug}/${pair.id}`,
+      category: category.slug,
       label: `${category.name}`,
       a: { turns: a.turns },
       b: { turns: b.turns },
-    });
+    };
+    studyPairs.push(blindedPair);
+    empathyValidationPairs.push(blindedPair);
 
     for (const anchorStem of ["a", "b"]) {
       const anchor = pair.files.find((f) => f.stem === anchorStem);
@@ -134,10 +138,16 @@ await writeFile(
   "utf8",
 );
 
+await writeFile(
+  path.join(outputDir, "assets", "empathy-validation-study-data.js"),
+  `window.EMPATHY_VALIDATION_PAIRS = ${JSON.stringify(empathyValidationPairs, null, 2)};\n`,
+  "utf8",
+);
+
 await writeFile(path.join(outputDir, ".nojekyll"), "", "utf8");
 
 console.log(
-  `Built ${outputDir} with ${siteData.categories.length} categories, ${countFiles(siteData)} JSON records, ${studyPairs.length} study pairs, and ${internalStudyPairs.length} internal validation comparisons.`,
+  `Built ${outputDir} with ${siteData.categories.length} categories, ${countFiles(siteData)} JSON records, ${studyPairs.length} study pairs, ${empathyValidationPairs.length} empathy validation pairs, and ${internalStudyPairs.length} internal validation comparisons.`,
 );
 
 async function sortedDirectories(directory) {
