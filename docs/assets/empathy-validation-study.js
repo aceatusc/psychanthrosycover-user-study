@@ -32,16 +32,27 @@
     const select = el('select', 'demo-select');
     const ph = el('option', '', '— select —'); ph.value = ''; select.appendChild(ph);
     USERNAMES.forEach((u) => { const o = el('option', '', u); o.value = u; select.appendChild(o); });
-    select.value = username;
+    const otherOpt = el('option', '', 'Other (enter your name)'); otherOpt.value = '__other__'; select.appendChild(otherOpt);
+    const otherInput = el('input', 'demo-other-input');
+    otherInput.type = 'text'; otherInput.placeholder = 'Your name';
+    const isCustom = username && !USERNAMES.includes(username);
+    select.value = isCustom ? '__other__' : username;
+    otherInput.value = isCustom ? username : '';
+    otherInput.hidden = !isCustom;
+    select.addEventListener('change', () => {
+      otherInput.hidden = select.value !== '__other__';
+      if (!otherInput.hidden) otherInput.focus();
+    });
     field.appendChild(select);
+    field.appendChild(otherInput);
     form.appendChild(field);
     sec.appendChild(form);
 
     const err = el('p', 'form-error'); err.hidden = true; sec.appendChild(err);
     const btn = el('button', 'btn-primary', 'Start study →');
     btn.addEventListener('click', () => {
-      username = select.value;
-      if (!username) { err.textContent = 'Please select your name.'; err.hidden = false; return; }
+      username = select.value === '__other__' ? otherInput.value.trim().replace(/\s+/g, ' ') : select.value;
+      if (!username) { err.textContent = select.value === '__other__' ? 'Please enter your name.' : 'Please select your name.'; err.hidden = false; return; }
       localStorage.setItem('empathy_validation_username', username);
       sessionId = getOrCreateSessionId(username);
       pairs = seededShuffle(rawPairs, hashStr('empathy-validation-order-v1')).map((pair) => ({
